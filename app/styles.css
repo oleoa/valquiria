@@ -1,0 +1,113 @@
+@import "tailwindcss";
+
+/*
+ * Valquiria Abreu — Tutoria para Mentoras
+ * Paleta noturna "quiet luxury": azul-aço profundo + prata + serifa.
+ * Tokens consumidos via @theme inline do Tailwind 4 e via var(--va-*) onde precisar.
+ */
+@theme inline {
+  --color-va-bg: #0e1823;
+  --color-va-bg-soft: #131f2d;
+  --color-va-blue: #386082;
+  --color-va-blue-dark: #34536f;
+  --color-va-blue-light: #3d6489;
+  --color-va-silver: #c9d1d9;
+  --color-va-silver-mute: #8b97a3;
+  --color-va-text: #f2f4f7;
+  --color-va-border: rgba(201, 209, 217, 0.1);
+  --color-va-border-up: rgba(201, 209, 217, 0.2);
+}
+
+/* Wrapper raiz da rota — sobrescreve o tema escuro yellow do root layout */
+.va-root {
+  background: #0e1823;
+  color: #f2f4f7;
+  font-family: var(--font-inter), system-ui, sans-serif;
+  position: relative;
+  min-height: 100vh;
+  z-index: 1;
+}
+
+/* Grain sutil — bem mais leve que o global */
+.va-root::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  opacity: 0.025;
+  background: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* Glow azul-aço no canto superior — decoração do hero */
+.va-hero-glow {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background:
+    radial-gradient(
+      ellipse 80% 50% at 80% 0%,
+      rgba(56, 96, 130, 0.22),
+      transparent 60%
+    ),
+    radial-gradient(
+      ellipse 60% 40% at 10% 100%,
+      rgba(56, 96, 130, 0.1),
+      transparent 70%
+    );
+}
+
+/* Animação fade-up (já existe global, mas reforço local para suportar delays grandes) */
+@keyframes vaFadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.va-reveal {
+  opacity: 0;
+  transform: translateY(24px);
+  transition:
+    opacity 0.8s cubic-bezier(0.22, 1, 0.36, 1),
+    transform 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.va-reveal.va-reveal--visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* FAQ accordion */
+.va-faq-answer {
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: grid-template-rows 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.va-faq-answer > div {
+  overflow: hidden;
+}
+
+.va-faq-item[data-open="true"] .va-faq-answer {
+  grid-template-rows: 1fr;
+}
+
+.va-faq-chevron {
+  transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.va-faq-item[data-open="true"] .va-faq-chevron {
+  transform: rotate(180deg);
+}
+
+/* Foco visível acessível em todos os interativos da rota */
+.va-root :focus-visible {
+  outline: 2px solid rgba(201, 209, 217, 0.5);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
