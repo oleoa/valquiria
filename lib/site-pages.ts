@@ -56,6 +56,14 @@ export const SITE_PAGES: SitePage[] = [
     categoria: "formulario",
     nota: "Externo · bigfive.valquiriaabreu.com",
   },
+  {
+    titulo: "Formulário de exemplo (demo)",
+    href: "/forms/exemplo",
+    descricao:
+      "Demonstração do padrão de formulários internos: coleta respostas e envia por e-mail à Valquiria. Descartável — serve de modelo para os formulários reais.",
+    categoria: "formulario",
+    nota: "Demo · descartável · envia por e-mail",
+  },
 
   // ----------------------------- Outras páginas ----------------------------
   {

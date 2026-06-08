@@ -16,9 +16,16 @@ export const INSTAGRAM_URL = "https://www.instagram.com/valquiria_abreumentora";
 // Formulário Big Five — hospedado em outro site/servidor.
 export const BIGFIVE_FORM_URL = "https://bigfive.valquiriaabreu.com";
 
-// E-mail de contato da Valquiria.
+// E-mail de contato da Valquiria. Também é o destino das respostas dos formulários
+// (app/forms/*), enviadas via Resend pela action em lib/forms/enviar.ts.
 export const EMAIL = "valquiria.abreu.mentora@gmail.com";
 export const EMAIL_URL = `mailto:${EMAIL}`;
+
+// Remetente dos formulários (app/forms/*). Precisa ser de um domínio verificado no
+// Resend. Enquanto valquiriaabreu.com não estiver verificado, troque por
+// "onboarding@resend.dev" — no modo de teste o Resend entrega só para o e-mail dono
+// da conta, que aqui é justamente o EMAIL acima (destino dos formulários).
+export const FORM_FROM_EMAIL = "Formulários Valquiria <formularios@valquiriaabreu.com>";
 
 // TODO(Leonardo): colar os links de pagamento do Stripe quando criar.
 // Enquanto for "#", o CtaButton fica inerte (não abre nova aba) — basta trocar depois.

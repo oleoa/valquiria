@@ -82,12 +82,51 @@ todas as páginas do site a partir de `SITE_PAGES` em [lib/site-pages.ts](lib/si
   o preço de um produto em `/analise` ou `/tutoria`, atualize também o `nota` correspondente (já
   aconteceu de o card seguir mostrando o preço antigo por esquecer este passo).
 
+## Formulários
+
+Formulários internos ficam em `app/forms/<slug>/`. **Cada formulário é criado à mão, com
+design próprio e conteúdo hardcoded** — não é um sistema dinâmico data-driven. O único código
+compartilhado é o envio de e-mail.
+
+Estrutura de cada formulário (duas páginas + o form client):
+
+- `app/forms/<slug>/page.tsx` — **perguntas**. Server Component com a casca on-brand
+  (header/hero/footer no padrão das outras páginas) + `metadata`; renderiza o form client.
+- `app/forms/<slug>/<NomeDoForm>.tsx` — o `<form>` interativo (`"use client"`), bespoke por form.
+- `app/forms/<slug>/obrigado/page.tsx` — **agradecimento**. Server Component estático, mostrado
+  após o envio dar certo.
+
+Use [app/forms/exemplo/](app/forms/exemplo/) como modelo (é uma demo descartável).
+
+**Envio de e-mail (fonte única).** Toda submissão passa pela Server Action `enviarFormulario`
+em [lib/forms/enviar.ts](lib/forms/enviar.ts) — **não recrie lógica de e-mail nas páginas**. Ela
+envia via **Resend** para o `EMAIL` da Valquiria, com remetente `FORM_FROM_EMAIL` (ambos em
+[lib/config.ts](lib/config.ts) — nunca hardcode e-mail na página). Fluxo no client: monta as
+respostas, chama a action e **só** navega para `/forms/<slug>/obrigado` (via `router.push` de
+`next/navigation`) quando o retorno é `{ ok: true }`; em erro, mostra a mensagem e reabilita o
+botão. Não use `redirect()` dentro da action.
+
+**Env:** `RESEND_API_KEY` em `.env.local` (template em `.env.example`) e na Vercel
+(Production + Preview). O `from` de domínio próprio (`formularios@valquiriaabreu.com`) só entrega
+com o domínio verificado no Resend; enquanto isso, use `onboarding@resend.dev` no `FORM_FROM_EMAIL`.
+
+**Ao criar um formulário novo (passos obrigatórios):**
+1. Criar as duas páginas (`page.tsx` + `obrigado/page.tsx`) e o form client.
+2. Reaproveitar a action `enviarFormulario` — não duplicar o envio.
+3. Registrar a entrada em [lib/site-pages.ts](lib/site-pages.ts) com `categoria: "formulario"`,
+   senão o formulário não aparece no `/dashboard`. (A página `obrigado` não entra no catálogo.)
+
 ## Design system
 
 Paleta noturna "quiet luxury": azul-aço (`--color-va-blue` `#386082`) + prata
 (`--color-va-silver`) sobre fundo profundo (`--color-va-bg` `#0e1823`). Todos os tokens estão
 no `@theme` de [app/styles.css](app/styles.css), junto com o grain sutil, o `va-hero-glow`,
 a animação `va-reveal` e o `:focus-visible` global de acessibilidade.
+
+**Selects:** todo `<select>` é estilizado globalmente em [app/styles.css](app/styles.css)
+(regra `.va-root select`) — a seta nativa é trocada por um chevron prata com respiro lateral
+(`background-position: right 1rem` + `padding-inline-end`). Não precisa repetir isso por form;
+vale para qualquer select novo automaticamente.
 
 ## Foco atual / roadmap
 

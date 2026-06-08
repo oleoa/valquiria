@@ -111,3 +111,21 @@
   outline-offset: 3px;
   border-radius: 4px;
 }
+
+/*
+ * Selects do site (todos os <select>, em qualquer formulário).
+ * A seta nativa fica colada na borda direita; aqui trocamos por uma seta custom
+ * (chevron prata, na cor --color-va-silver-mute) com respiro lateral. O
+ * padding-inline-end abre espaço para o texto não passar por baixo da seta —
+ * vence o px-* do Tailwind por especificidade, mantendo o padding da esquerda.
+ */
+.va-root select {
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='%238b97a3' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 1rem center;
+  background-size: 1.15em 1.15em;
+  padding-inline-end: 2.75rem;
+}
