@@ -11,20 +11,19 @@ import {
   WHATSAPP_DUVIDAS_URL,
   INSTAGRAM_URL,
   STRIPE_COMBO_URL,
-  STRIPE_TEMPERAMENTO_URL,
   STRIPE_COMPORTAMENTAL_URL,
 } from "@/lib/config";
-import { ANALISE_FAQ } from "@/lib/faq-data";
+import { COMPORTAMENTO_FAQ } from "@/lib/faq-data";
 
 export const metadata: Metadata = {
-  title: "Análise de Temperamento e Comportamento — Valquiria Abreu",
+  title: "Análise de Comportamento — Valquiria Abreu",
   description:
-    "Descubra o que impulsiona e o que bloqueia o seu sucesso. 2 sessões online, relatório personalizado e 10 dias de suporte no WhatsApp com a mentora comportamental Valquiria Abreu.",
+    "Enxergue os padrões que você repete no dia a dia — o que te impulsiona e o que te sabota. 2 sessões online, relatório personalizado e 10 dias de suporte no WhatsApp com a mentora comportamental Valquiria Abreu.",
   openGraph: {
-    title: "Análise de Temperamento e Comportamento — Valquiria Abreu",
+    title: "Análise de Comportamento — Valquiria Abreu",
     description:
-      "Descubra o que impulsiona e o que bloqueia o seu sucesso. 2 sessões online, relatório personalizado e 10 dias de suporte no WhatsApp.",
-    url: "/analise",
+      "Enxergue os padrões que você repete no dia a dia — o que te impulsiona e o que te sabota. 2 sessões online, relatório personalizado e 10 dias de suporte no WhatsApp.",
+    url: "/comportamento",
     siteName: "Valquiria Abreu",
     locale: "pt_BR",
     type: "website",
@@ -33,7 +32,7 @@ export const metadata: Metadata = {
         url: "/logo-2.png",
         width: 1200,
         height: 1200,
-        alt: "Valquiria Abreu — Análise de Temperamento e Comportamento",
+        alt: "Valquiria Abreu — Análise de Comportamento",
       },
     ],
   },
@@ -43,7 +42,7 @@ export const metadata: Metadata = {
 /*  PÁGINA                                                             */
 /* ------------------------------------------------------------------ */
 
-export default function AnalisePage() {
+export default function ComportamentoPage() {
   return (
     <main className="relative">
       {/* ============================== HEADER ============================== */}
@@ -83,31 +82,31 @@ export default function AnalisePage() {
         <Container className="relative z-10 flex flex-col items-center pt-6 pb-20 text-center md:min-h-[88vh] md:justify-center md:py-28">
           <RevealOnScroll>
             <p className="mb-8 text-[0.72rem] font-medium tracking-[0.32em] text-[var(--color-va-silver-mute)] uppercase">
-              Análise de temperamento · autoconhecimento
+              Análise comportamental · autoconhecimento
             </p>
           </RevealOnScroll>
 
           <RevealOnScroll delay={120}>
             <h1 className="mx-auto max-w-4xl font-[family-name:var(--font-cormorant)] text-4xl leading-[1.08] font-light text-[var(--color-va-text)] md:text-6xl lg:text-7xl">
-              Como descobrir o que impulsiona e o que{" "}
+              Você decide mudar — mas o{" "}
               <span className="italic text-[var(--color-va-silver)]">
-                bloqueia
+                padrão
               </span>{" "}
-              o seu sucesso?
+              continua o mesmo. Por quê?
             </h1>
           </RevealOnScroll>
 
           <RevealOnScroll delay={280}>
             <p className="mt-8 max-w-2xl text-base leading-relaxed text-[var(--color-va-silver)] md:text-xl">
-              Você já se perguntou por que certos padrões continuam se repetindo
-              na sua vida? A resposta pode estar no seu temperamento.
+              A Análise de Comportamento revela os padrões que você repete no dia
+              a dia — o que te impulsiona, o que te sabota e como mudar de verdade.
             </p>
           </RevealOnScroll>
 
           <RevealOnScroll delay={420}>
             <div className="mt-12">
               <CtaButton href="#investimento">
-                Quero fazer minha análise
+                Quero entender meus padrões
               </CtaButton>
             </div>
           </RevealOnScroll>
@@ -131,18 +130,18 @@ export default function AnalisePage() {
             <h2 className="mx-auto max-w-3xl text-center font-[family-name:var(--font-cormorant)] text-4xl leading-[1.1] font-light text-[var(--color-va-text)] md:text-6xl">
               Talvez você reconheça{" "}
               <span className="italic text-[var(--color-va-silver)]">
-                estas perguntas.
+                estas cenas.
               </span>
             </h2>
           </RevealOnScroll>
 
-          {/* Litania: 3 perguntas próximas, com divisores curtos entre elas. */}
+          {/* Litania: 3 cenas próximas, com divisores curtos entre elas. */}
           <RevealOnScroll>
             <ul className="mx-auto mt-16 flex max-w-3xl flex-col items-center gap-8 md:mt-20 md:gap-10">
               {[
-                "Por que você trava justamente quando está perto do que quer?",
-                "Por que certas reações se repetem, mesmo quando você decide mudar?",
-                "O que, dentro de você, impulsiona — e o que sabota?",
+                "Você decide mudar, mas na hora age exatamente como sempre agiu.",
+                "As mesmas reações voltam — no trabalho, com as pessoas, com você mesma.",
+                "Você sabe o que fazer. Só não consegue sustentar quando mais importa.",
               ].map((frase, idx, arr) => (
                 <li
                   key={frase}
@@ -164,8 +163,8 @@ export default function AnalisePage() {
 
           <RevealOnScroll>
             <p className="mx-auto mt-16 max-w-2xl text-center text-lg leading-relaxed text-[var(--color-va-silver)] md:mt-20 md:text-xl">
-              Não é falta de esforço nem de vontade. É o seu temperamento agindo
-              por baixo — e a resposta pode estar exatamente aí.
+              Não é falta de disciplina nem de vontade. São padrões de
+              comportamento rodando no automático — e dá para enxergá-los.
             </p>
           </RevealOnScroll>
         </Container>
@@ -175,7 +174,7 @@ export default function AnalisePage() {
       <section className="relative bg-[var(--color-va-bg-soft)] py-24 md:py-32 lg:py-40">
         <Container>
           <RevealOnScroll>
-            <Eyebrow>A resposta está no seu temperamento</Eyebrow>
+            <Eyebrow>Quando o padrão fica visível, ele perde o controle</Eyebrow>
           </RevealOnScroll>
 
           <RevealOnScroll>
@@ -190,8 +189,8 @@ export default function AnalisePage() {
               </svg>
 
               <blockquote className="mt-8 font-[family-name:var(--font-cormorant)] text-2xl leading-[1.4] font-light text-[var(--color-va-text)] italic md:text-4xl lg:text-[2.5rem]">
-                Com uma análise profunda, você entende o que está te
-                impulsionando ou bloqueando e começa a fazer{" "}
+                Quando você enxerga o que repete, para de ser refém do automático
+                e começa a fazer{" "}
                 <span className="text-[var(--color-va-silver)]">
                   mudanças reais
                 </span>
@@ -199,8 +198,8 @@ export default function AnalisePage() {
               </blockquote>
 
               <p className="mx-auto mt-10 max-w-xl text-base leading-relaxed text-[var(--color-va-silver-mute)] md:text-lg">
-                Descobrir o seu temperamento e as estratégias que fazem você
-                agir aceleram os seus resultados.
+                Mapear os seus padrões de comportamento é o que transforma
+                intenção em ação que se sustenta.
               </p>
             </figure>
           </RevealOnScroll>
@@ -232,7 +231,7 @@ export default function AnalisePage() {
                   ),
                   titulo: "2 sessões online",
                   corpo:
-                    "Dois encontros ao vivo comigo, online, onde mergulhamos no seu temperamento.",
+                    "Dois encontros ao vivo comigo, online, onde mapeamos os seus padrões de comportamento.",
                 },
                 {
                   icone: (
@@ -245,7 +244,7 @@ export default function AnalisePage() {
                   ),
                   titulo: "Relatório personalizado",
                   corpo:
-                    "Um relatório só seu: clareza sobre quem você é de verdade, a melhor estratégia para alcançar os seus objetivos e os cuidados que deve tomar.",
+                    "Um relatório só seu: os padrões que te movem e te travam, e a melhor estratégia para agir diferente.",
                 },
                 {
                   icone: (
@@ -295,7 +294,7 @@ export default function AnalisePage() {
             <h2 className="text-center font-[family-name:var(--font-cormorant)] text-4xl leading-[1.1] font-light text-[var(--color-va-text)] md:text-6xl">
               Ao final, você enxerga o que{" "}
               <span className="italic text-[var(--color-va-silver)]">
-                antes era invisível.
+                antes era automático.
               </span>
             </h2>
           </RevealOnScroll>
@@ -303,11 +302,11 @@ export default function AnalisePage() {
           <RevealOnScroll>
             <ul className="mx-auto mt-16 max-w-2xl space-y-6">
               {[
-                "O seu temperamento e como ele molda as suas decisões.",
-                "O que está te impulsionando rumo aos seus objetivos.",
-                "O que está te bloqueando — e por que os padrões se repetem.",
-                "As estratégias que fazem você agir e aceleram os seus resultados.",
-                "Os cuidados que você deve tomar ao longo do processo.",
+                "Os padrões de comportamento que você repete sem perceber.",
+                "O que, no seu jeito de agir, te impulsiona rumo aos seus objetivos.",
+                "O que te sabota — e por que certas reações sempre voltam.",
+                "A estratégia para agir diferente quando mais importa.",
+                "Os cuidados que você deve tomar para sustentar a mudança.",
               ].map((item) => (
                 <li key={item} className="flex items-start gap-4">
                   <Check
@@ -335,104 +334,37 @@ export default function AnalisePage() {
             <Eyebrow>Investimento</Eyebrow>
           </RevealOnScroll>
 
-          {/* Duas análises individuais */}
+          {/* Card em destaque: a Análise de Comportamento */}
           <RevealOnScroll>
-            <div className="mx-auto mt-16 grid max-w-2xl grid-cols-1 gap-5 md:grid-cols-2 md:gap-6">
-              {[
-                {
-                  titulo: "Análise de Temperamento",
-                  corpo:
-                    "Entenda a sua natureza — a base que molda como você sente, decide e reage.",
-                  href: STRIPE_TEMPERAMENTO_URL,
-                },
-                {
-                  titulo: "Análise Comportamental",
-                  corpo:
-                    "Enxergue os seus padrões em ação — o que você repete, o que te impulsiona e o que te sabota.",
-                  href: STRIPE_COMPORTAMENTAL_URL,
-                },
-              ].map((plano) => (
-                <div
-                  key={plano.titulo}
-                  className="flex flex-col rounded-3xl border border-[var(--color-va-border)] bg-[var(--color-va-bg)] p-8"
-                >
-                  <h3 className="font-[family-name:var(--font-cormorant)] text-2xl leading-tight font-medium text-[var(--color-va-text)]">
-                    {plano.titulo}
-                  </h3>
-                  <p className="mt-3 text-sm leading-relaxed text-[var(--color-va-silver-mute)] md:text-base">
-                    {plano.corpo}
-                  </p>
-
-                  <div className="mt-6 flex items-baseline gap-2">
-                    <span className="font-[family-name:var(--font-cormorant)] text-sm font-light text-[var(--color-va-silver-mute)]">
-                      R$
-                    </span>
-                    <span className="font-[family-name:var(--font-cormorant)] text-5xl leading-none font-light text-[var(--color-va-text)]">
-                      497
-                    </span>
-                  </div>
-
-                  <a
-                    href={plano.href}
-                    target={
-                      plano.href.startsWith("http") ? "_blank" : undefined
-                    }
-                    rel={
-                      plano.href.startsWith("http")
-                        ? "noopener noreferrer"
-                        : undefined
-                    }
-                    className="group mt-8 inline-flex w-full items-center justify-center gap-2 rounded-full border border-[var(--color-va-border-up)] bg-transparent px-6 py-3.5 text-sm font-medium text-[var(--color-va-text)] transition-all duration-300 hover:-translate-y-0.5 hover:border-[var(--color-va-silver-mute)] hover:bg-[var(--color-va-blue)]/[0.06]"
-                  >
-                    <span>Quero esta análise</span>
-                    <ArrowRight
-                      className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-0.5"
-                      strokeWidth={1.7}
-                      aria-hidden="true"
-                    />
-                  </a>
-                </div>
-              ))}
-            </div>
-          </RevealOnScroll>
-
-          {/* Card combo em destaque */}
-          <RevealOnScroll>
-            <div className="mx-auto mt-6 max-w-2xl">
+            <div className="mx-auto mt-16 max-w-2xl">
               <div className="relative overflow-hidden rounded-3xl border border-[var(--color-va-blue)]/40 bg-[var(--color-va-bg)] p-10 shadow-[0_40px_100px_-40px_rgba(47,88,120,0.3)] md:p-14">
                 <div className="pointer-events-none absolute -top-32 -right-32 h-64 w-64 rounded-full bg-[var(--color-va-blue)] opacity-10 blur-3xl" />
 
                 <div className="relative">
-                  <div className="flex justify-center">
-                    <span className="rounded-full border border-[var(--color-va-blue)]/50 bg-[var(--color-va-blue)]/15 px-4 py-1.5 text-[0.7rem] font-medium tracking-[0.2em] text-[var(--color-va-silver)] uppercase">
-                      As duas análises juntas
-                    </span>
-                  </div>
-
-                  <p className="mt-8 text-center text-sm text-[var(--color-va-silver-mute)]">
-                    De <span className="line-through">R$ 994</span> por
+                  <p className="text-center text-sm tracking-[0.25em] text-[var(--color-va-silver-mute)] uppercase">
+                    Análise de Comportamento
                   </p>
 
-                  <div className="mt-2 flex items-baseline justify-center gap-3">
+                  <div className="mt-8 flex items-baseline justify-center gap-3">
                     <span className="font-[family-name:var(--font-cormorant)] text-sm font-light text-[var(--color-va-silver-mute)] md:text-base">
                       R$
                     </span>
                     <span className="font-[family-name:var(--font-cormorant)] text-7xl leading-none font-light text-[var(--color-va-text)] md:text-8xl">
-                      894
+                      497
                     </span>
                   </div>
 
                   <p className="mt-4 text-center text-sm text-[var(--color-va-silver-mute)]">
-                    Pagamento único · economize R$ 100
+                    Pagamento único
                   </p>
 
                   <div className="mt-10 h-px w-full bg-[var(--color-va-border-up)]" />
 
                   <ul className="mt-10 space-y-4">
                     {[
-                      "Análise de Temperamento + Análise Comportamental",
                       "2 sessões online comigo",
-                      "Relatório personalizado com a sua estratégia",
+                      "Relatório personalizado com os seus padrões",
+                      "Estratégia para agir diferente no dia a dia",
                       "10 dias de suporte no WhatsApp",
                     ].map((item) => (
                       <li key={item} className="flex items-center gap-3">
@@ -449,10 +381,60 @@ export default function AnalisePage() {
                   </ul>
 
                   <div className="mt-12 flex justify-center">
-                    <CtaButton href={STRIPE_COMBO_URL}>
-                      Quero as duas análises
+                    <CtaButton href={STRIPE_COMPORTAMENTAL_URL}>
+                      Quero a análise de comportamento
                     </CtaButton>
                   </div>
+                </div>
+              </div>
+            </div>
+          </RevealOnScroll>
+
+          {/* Card secundário: combo como upsell */}
+          <RevealOnScroll>
+            <div className="mx-auto mt-6 max-w-2xl">
+              <div className="rounded-3xl border border-[var(--color-va-border)] bg-[var(--color-va-bg)] p-8 md:p-10">
+                <div className="flex justify-center">
+                  <span className="rounded-full border border-[var(--color-va-blue)]/50 bg-[var(--color-va-blue)]/15 px-4 py-1.5 text-[0.7rem] font-medium tracking-[0.2em] text-[var(--color-va-silver)] uppercase">
+                    Leve as duas análises juntas
+                  </span>
+                </div>
+
+                <p className="mt-6 text-center text-sm text-[var(--color-va-silver-mute)]">
+                  De <span className="line-through">R$ 994</span> por
+                </p>
+
+                <div className="mt-2 flex items-baseline justify-center gap-2">
+                  <span className="font-[family-name:var(--font-cormorant)] text-sm font-light text-[var(--color-va-silver-mute)]">
+                    R$
+                  </span>
+                  <span className="font-[family-name:var(--font-cormorant)] text-6xl leading-none font-light text-[var(--color-va-text)]">
+                    894
+                  </span>
+                </div>
+
+                <p className="mt-4 text-center text-sm text-[var(--color-va-silver-mute)]">
+                  Análise de Comportamento + Análise de Temperamento · economize R$ 100
+                </p>
+
+                <div className="mt-8 flex justify-center">
+                  <a
+                    href={STRIPE_COMBO_URL}
+                    target={STRIPE_COMBO_URL.startsWith("http") ? "_blank" : undefined}
+                    rel={
+                      STRIPE_COMBO_URL.startsWith("http")
+                        ? "noopener noreferrer"
+                        : undefined
+                    }
+                    className="group inline-flex items-center justify-center gap-2 rounded-full border border-[var(--color-va-border-up)] bg-transparent px-6 py-3.5 text-sm font-medium text-[var(--color-va-text)] transition-all duration-300 hover:-translate-y-0.5 hover:border-[var(--color-va-silver-mute)] hover:bg-[var(--color-va-blue)]/[0.06]"
+                  >
+                    <span>Quero as duas análises</span>
+                    <ArrowRight
+                      className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-0.5"
+                      strokeWidth={1.7}
+                      aria-hidden="true"
+                    />
+                  </a>
                 </div>
               </div>
             </div>
@@ -491,7 +473,7 @@ export default function AnalisePage() {
 
           <RevealOnScroll>
             <div className="mt-16">
-              <Faq items={ANALISE_FAQ} />
+              <Faq items={COMPORTAMENTO_FAQ} />
             </div>
           </RevealOnScroll>
         </Container>

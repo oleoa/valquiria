@@ -27,8 +27,7 @@ export const EMAIL_URL = `mailto:${EMAIL}`;
 // da conta, que aqui é justamente o EMAIL acima (destino dos formulários).
 export const FORM_FROM_EMAIL = "Formulários Valquiria <formularios@valquiriaabreu.com>";
 
-// TODO(Leonardo): colar os links de pagamento do Stripe quando criar.
-// Enquanto for "#", o CtaButton fica inerte (não abre nova aba) — basta trocar depois.
-export const STRIPE_COMBO_URL = "#"; // as duas juntas — R$694
-export const STRIPE_TEMPERAMENTO_URL = "#"; // Análise de Temperamento — R$397
-export const STRIPE_COMPORTAMENTAL_URL = "#"; // Análise Comportamental — R$397
+// Links de pagamento (Stripe Checkout). O CtaButton abre em nova aba por serem "http".
+export const STRIPE_COMBO_URL = "https://buy.stripe.com/4gM4gs2aK7paftp9R75Ne02"; // as duas juntas — R$894
+export const STRIPE_TEMPERAMENTO_URL = "https://buy.stripe.com/cNi5kw2aK8teftp8N35Ne01"; // Análise de Temperamento — R$497
+export const STRIPE_COMPORTAMENTAL_URL = "https://buy.stripe.com/dRm7sE4iSfVGdlh7IZ5Ne00"; // Análise de Comportamento — R$497

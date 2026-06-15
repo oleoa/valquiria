@@ -480,7 +480,7 @@ export default function ValquiriaPage() {
                 width={800}
                 height={1000}
                 quality={92}
-                className="aspect-[4/5] w-full max-w-sm rounded-3xl object-cover shadow-[0_30px_80px_-30px_rgba(0,0,0,0.6)] ring-1 ring-[var(--color-va-border-up)]"
+                className="aspect-[4/5] w-full max-w-sm rounded-3xl object-cover shadow-[0_30px_80px_-30px_rgba(16,34,50,0.22)] ring-1 ring-[var(--color-va-border-up)]"
               />
             </RevealOnScroll>
 
@@ -533,9 +533,9 @@ export default function ValquiriaPage() {
 
           <RevealOnScroll>
             <div className="mx-auto mt-16 max-w-2xl">
-              <div className="relative overflow-hidden rounded-3xl border border-[var(--color-va-blue)]/40 bg-[var(--color-va-bg-soft)] p-10 shadow-[0_40px_100px_-40px_rgba(56,96,130,0.5)] md:p-14">
+              <div className="relative overflow-hidden rounded-3xl border border-[var(--color-va-blue)]/40 bg-[var(--color-va-bg-soft)] p-10 shadow-[0_40px_100px_-40px_rgba(47,88,120,0.3)] md:p-14">
                 {/* Glow interno */}
-                <div className="pointer-events-none absolute -top-32 -right-32 h-64 w-64 rounded-full bg-[var(--color-va-blue)] opacity-20 blur-3xl" />
+                <div className="pointer-events-none absolute -top-32 -right-32 h-64 w-64 rounded-full bg-[var(--color-va-blue)] opacity-10 blur-3xl" />
 
                 <div className="relative">
                   <p className="text-center text-sm tracking-[0.25em] text-[var(--color-va-silver-mute)] uppercase">

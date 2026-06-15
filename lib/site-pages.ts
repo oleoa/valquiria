@@ -36,7 +36,15 @@ export const SITE_PAGES: SitePage[] = [
     descricao:
       "Página de venda da análise: 2 sessões online, relatório personalizado e 10 dias de suporte no WhatsApp.",
     categoria: "produto",
-    nota: "R$ 397 cada · R$ 694 o combo",
+    nota: "R$ 497 cada · R$ 894 o combo",
+  },
+  {
+    titulo: "Análise de Comportamento",
+    href: "/comportamento",
+    descricao:
+      "Landing dedicada à Análise de Comportamento: mapeia os padrões que a mentorada repete, com 2 sessões online, relatório personalizado e 10 dias de suporte. Oferece o combo como upsell.",
+    categoria: "produto",
+    nota: "R$ 497 · R$ 894 no combo",
   },
   {
     titulo: "Tutoria Comportamental Mensal",
@@ -68,7 +76,7 @@ export const SITE_PAGES: SitePage[] = [
   // ----------------------------- Outras páginas ----------------------------
   {
     titulo: "Links (linktree)",
-    href: "/linkthree",
+    href: "/linktree",
     descricao:
       "Página de links pública — reúne os canais da Valquiria e o acesso às páginas de produto.",
     categoria: "outra",

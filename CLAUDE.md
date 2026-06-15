@@ -10,10 +10,12 @@ contínua onde a mentoria de negócio já entregou o que tinha de entregar. Dois
 
 - **Tutoria comportamental mensal** (`/tutoria`) — R$1.800/mês, sem fidelidade. Acompanhamento
   emocional/comportamental contínuo + encontro ao vivo + suporte no WhatsApp.
-- **Análise de Temperamento / Comportamental** (`/analise`) — R$397 cada ou R$694 o combo.
-  2 sessões online + relatório personalizado + 10 dias de suporte no WhatsApp.
+- **Análise de Temperamento / Comportamental** (`/analise`) — R$497 cada ou R$894 o combo.
+  2 sessões online + relatório personalizado + 10 dias de suporte no WhatsApp. Há ainda uma
+  landing dedicada à **Análise de Comportamento** (`/comportamento`), que vende o produto
+  isolado (R$497) e oferece o combo (R$894) como upsell.
 
-Conversão acontece via WhatsApp e (em construção) checkout do Stripe — veja [Roadmap](#foco-atual--roadmap).
+Conversão acontece via WhatsApp e checkout do Stripe — veja [Roadmap](#foco-atual--roadmap).
 
 ## Stack
 
@@ -118,24 +120,28 @@ com o domínio verificado no Resend; enquanto isso, use `onboarding@resend.dev` 
 
 ## Design system
 
-Paleta noturna "quiet luxury": azul-aço (`--color-va-blue` `#386082`) + prata
-(`--color-va-silver`) sobre fundo profundo (`--color-va-bg` `#0e1823`). Todos os tokens estão
-no `@theme` de [app/styles.css](app/styles.css), junto com o grain sutil, o `va-hero-glow`,
-a animação `va-reveal` e o `:focus-visible` global de acessibilidade.
+Paleta clara "quiet luxury": fundo **areia** (bege quente — `--color-va-bg` `#f0e6d2`) com
+**detalhes no azul da marca** (`--color-va-blue` `#2f5878`). Todos os tokens estão no `@theme`
+de [app/styles.css](app/styles.css), junto com o grain sutil, o `va-hero-glow`, a animação
+`va-reveal` e o `:focus-visible` global de acessibilidade. **Atenção aos nomes:** os tokens
+`--color-va-silver` (`#36505f`) e `--color-va-silver-mute` (`#6b7886`) mantêm o nome "silver"
+por histórico, mas hoje são **tons escuros de texto** (secundário e apagado) sobre o fundo
+claro — não são mais prata. O texto primário é `--color-va-text` `#102232` (azul quase preto).
 
 **Selects:** todo `<select>` é estilizado globalmente em [app/styles.css](app/styles.css)
-(regra `.va-root select`) — a seta nativa é trocada por um chevron prata com respiro lateral
+(regra `.va-root select`) — a seta nativa é trocada por um chevron cinza-azulado com respiro lateral
 (`background-position: right 1rem` + `padding-inline-end`). Não precisa repetir isso por form;
 vale para qualquer select novo automaticamente.
 
 ## Foco atual / roadmap
 
-**Integração Stripe.** Os links de pagamento em [lib/config.ts](lib/config.ts) ainda são
-placeholders `"#"` (`STRIPE_COMBO_URL`, `STRIPE_TEMPERAMENTO_URL`, `STRIPE_COMPORTAMENTAL_URL`).
-Enquanto forem `"#"`, o `CtaButton` fica inerte (não abre nova aba) — basta trocar pelos links
-reais. Observação: os preços (R$397/R$694/R$1.800) hoje aparecem hardcoded nas páginas
-`/analise` e `/tutoria`; ao mexer em pagamento, conferir consistência com o Stripe **e com o
-`nota` da entrada correspondente em [lib/site-pages.ts](lib/site-pages.ts)** (preço do `/dashboard`).
+**Integração Stripe.** Os links de pagamento em [lib/config.ts](lib/config.ts)
+(`STRIPE_COMBO_URL`, `STRIPE_TEMPERAMENTO_URL`, `STRIPE_COMPORTAMENTAL_URL`) já apontam para os
+checkouts reais do Stripe. Como agora são `http...`, o `CtaButton` abre cada um em nova aba
+automaticamente (lógica `external = href.startsWith("http")`). Observação: os preços
+(R$497/R$894/R$1.800) ainda aparecem hardcoded nas páginas `/analise`, `/comportamento` e
+`/tutoria`; ao mexer em pagamento, conferir consistência com o Stripe **e com o `nota` da
+entrada correspondente em [lib/site-pages.ts](lib/site-pages.ts)** (preço do `/dashboard`).
 
 ## Deploy
 

@@ -1,8 +1,11 @@
 import type { Metadata } from "next";
 import Image from "next/image";
-import { ArrowRight, Compass } from "lucide-react";
+import Link from "next/link";
+import { ArrowRight, Activity, Compass, Globe } from "lucide-react";
 import SpiralOrnament from "@/components/SpiralOrnament";
 import RevealOnScroll from "@/components/RevealOnScroll";
+import WhatsAppIcon from "@/components/icons/WhatsAppIcon";
+import { WHATSAPP_URL } from "@/lib/config";
 
 export const metadata: Metadata = {
   title: "Valquiria Abreu — Links",
@@ -42,7 +45,7 @@ export default function ValquiriaLinksPage() {
             height={224}
             quality={95}
             priority
-            className="h-28 w-28 rounded-full object-cover object-top ring-1 ring-[var(--color-va-border-up)] shadow-[0_18px_40px_-18px_rgba(0,0,0,0.7)]"
+            className="h-28 w-28 rounded-full object-cover object-top ring-1 ring-[var(--color-va-border-up)] shadow-[0_18px_40px_-18px_rgba(16,34,50,0.22)]"
           />
           <h1 className="mt-7 font-[family-name:var(--font-cormorant)] text-4xl leading-none font-light text-[var(--color-va-text)]">
             Valquiria Abreu
@@ -58,9 +61,28 @@ export default function ValquiriaLinksPage() {
           aria-label="Links da Valquiria Abreu"
         >
           <RevealOnScroll delay={0}>
+            <Link
+              href="/"
+              className={`${linkBase} border border-[var(--color-va-border-up)] bg-transparent text-[var(--color-va-text)] hover:border-[var(--color-va-silver-mute)] hover:bg-[var(--color-va-blue)]/[0.06]`}
+            >
+              <Globe
+                className="h-5 w-5 shrink-0 text-[var(--color-va-silver)]"
+                strokeWidth={1.7}
+                aria-hidden="true"
+              />
+              <span className="flex-1 text-center">Conheça meu trabalho</span>
+              <ArrowRight
+                className="h-5 w-5 shrink-0 text-[var(--color-va-silver)] transition-transform duration-300 group-hover:translate-x-0.5"
+                strokeWidth={1.7}
+                aria-hidden="true"
+              />
+            </Link>
+          </RevealOnScroll>
+
+          <RevealOnScroll delay={80}>
             <a
               href="/analise"
-              className={`${linkBase} border border-[var(--color-va-border-up)] bg-transparent text-[var(--color-va-text)] hover:border-[var(--color-va-silver-mute)] hover:bg-white/[0.04]`}
+              className={`${linkBase} border border-[var(--color-va-border-up)] bg-transparent text-[var(--color-va-text)] hover:border-[var(--color-va-silver-mute)] hover:bg-[var(--color-va-blue)]/[0.06]`}
             >
               <Compass
                 className="h-5 w-5 shrink-0 text-[var(--color-va-silver)]"
@@ -70,6 +92,44 @@ export default function ValquiriaLinksPage() {
               <span className="flex-1 text-center">
                 Análise de Temperamento
               </span>
+              <ArrowRight
+                className="h-5 w-5 shrink-0 text-[var(--color-va-silver)] transition-transform duration-300 group-hover:translate-x-0.5"
+                strokeWidth={1.7}
+                aria-hidden="true"
+              />
+            </a>
+          </RevealOnScroll>
+
+          <RevealOnScroll delay={160}>
+            <a
+              href="/comportamento"
+              className={`${linkBase} border border-[var(--color-va-border-up)] bg-transparent text-[var(--color-va-text)] hover:border-[var(--color-va-silver-mute)] hover:bg-[var(--color-va-blue)]/[0.06]`}
+            >
+              <Activity
+                className="h-5 w-5 shrink-0 text-[var(--color-va-silver)]"
+                strokeWidth={1.7}
+                aria-hidden="true"
+              />
+              <span className="flex-1 text-center">
+                Análise de Comportamento
+              </span>
+              <ArrowRight
+                className="h-5 w-5 shrink-0 text-[var(--color-va-silver)] transition-transform duration-300 group-hover:translate-x-0.5"
+                strokeWidth={1.7}
+                aria-hidden="true"
+              />
+            </a>
+          </RevealOnScroll>
+
+          <RevealOnScroll delay={240}>
+            <a
+              href={WHATSAPP_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              className={`${linkBase} border border-[var(--color-va-border-up)] bg-transparent text-[var(--color-va-text)] hover:border-[var(--color-va-silver-mute)] hover:bg-[var(--color-va-blue)]/[0.06]`}
+            >
+              <WhatsAppIcon className="h-5 w-5 shrink-0 text-[var(--color-va-silver)]" />
+              <span className="flex-1 text-center">WhatsApp</span>
               <ArrowRight
                 className="h-5 w-5 shrink-0 text-[var(--color-va-silver)] transition-transform duration-300 group-hover:translate-x-0.5"
                 strokeWidth={1.7}
