@@ -6,7 +6,7 @@ import Eyebrow from "@/components/Eyebrow";
 import SpiralOrnament from "@/components/SpiralOrnament";
 import RevealOnScroll from "@/components/RevealOnScroll";
 import Faq from "@/components/Faq";
-import { WHATSAPP_URL, INSTAGRAM_URL } from "@/lib/config";
+import { INSTAGRAM_URL } from "@/lib/config";
 import { TUTORIA_FAQ } from "@/lib/faq-data";
 
 /* ------------------------------------------------------------------ */
@@ -269,8 +269,8 @@ export default function ValquiriaPage() {
 
               <blockquote className="mt-8 font-[family-name:var(--font-cormorant)] text-2xl leading-[1.4] font-light text-[var(--color-va-text)] italic md:text-4xl lg:text-[2.5rem]">
                 Minha entrega não se limita à aula mensal. Existe acompanhamento
-                emocional e comportamental contínuo, suporte estratégico no
-                WhatsApp e sustentação ao longo da jornada. Por isso minha
+                emocional e comportamental contínuo, suporte estratégico e
+                sustentação ao longo da jornada. Por isso minha
                 atuação funciona muito mais como uma{" "}
                 <span className="text-[var(--color-va-silver)]">
                   tutoria de desenvolvimento
@@ -340,7 +340,7 @@ export default function ValquiriaPage() {
                       <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z" />
                     </>
                   ),
-                  titulo: "Suporte estratégico no WhatsApp",
+                  titulo: "Suporte estratégico",
                   corpo:
                     "Em horários definidos estarei a disposição para responder dúvidas pontuais na semana.",
                 },
@@ -564,7 +564,7 @@ export default function ValquiriaPage() {
                     {[
                       "Relatório individual para cada mentorada",
                       "Encontro mensal ao vivo",
-                      "Suporte estratégico no WhatsApp",
+                      "Suporte estratégico",
                       "Sustentação durante toda a jornada",
                     ].map((item) => (
                       <li key={item} className="flex items-center gap-3">
@@ -581,7 +581,7 @@ export default function ValquiriaPage() {
                   </ul>
 
                   <div className="mt-12 flex justify-center">
-                    <CtaButton href={WHATSAPP_URL}>
+                    <CtaButton href={INSTAGRAM_URL}>
                       Quero conversar com a Valquiria
                     </CtaButton>
                   </div>
@@ -630,14 +630,6 @@ export default function ValquiriaPage() {
               className="flex items-center gap-8 text-sm text-[var(--color-va-silver-mute)]"
               aria-label="Rodapé"
             >
-              <a
-                href={WHATSAPP_URL}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="transition-colors hover:text-[var(--color-va-text)]"
-              >
-                WhatsApp
-              </a>
               <a
                 href={INSTAGRAM_URL}
                 target="_blank"

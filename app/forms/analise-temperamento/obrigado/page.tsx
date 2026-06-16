@@ -5,22 +5,20 @@ import Container from "@/components/Container";
 import Eyebrow from "@/components/Eyebrow";
 import SpiralOrnament from "@/components/SpiralOrnament";
 import RevealOnScroll from "@/components/RevealOnScroll";
+import CtaButton from "@/components/CtaButton";
 import { INSTAGRAM_URL } from "@/lib/config";
-import FormExemplo from "./FormExemplo";
 
 export const metadata: Metadata = {
-  title: "Formulário de exemplo — Valquiria Abreu",
-  description:
-    "Formulário de demonstração do padrão de formulários internos da Valquiria Abreu.",
-  // Formulário interno/demo — fora do índice de busca.
+  title: "Respostas recebidas — Valquiria Abreu",
+  description: "Obrigada por preencher a Análise de Temperamento.",
   robots: { index: false, follow: false },
 };
 
 /* ------------------------------------------------------------------ */
-/*  PÁGINA — perguntas (Server Component; o form em si é client)        */
+/*  PÁGINA — obrigado (estática; mostrada após o envio dar certo)       */
 /* ------------------------------------------------------------------ */
 
-export default function FormularioExemploPage() {
+export default function FormularioAnaliseTemperamentoObrigadoPage() {
   return (
     <main className="relative">
       {/* ============================== HEADER ============================== */}
@@ -45,32 +43,33 @@ export default function FormularioExemploPage() {
         <div className="va-hero-glow" />
         <SpiralOrnament className="pointer-events-none absolute -top-10 -right-10 z-0 hidden h-[36rem] w-[36rem] text-[var(--color-va-blue-light)] opacity-[0.06] md:block" />
 
-        <Container className="relative z-10 flex flex-col items-center pt-8 pb-20 text-center md:py-24">
+        <Container className="relative z-10 flex min-h-[70vh] flex-col items-center justify-center py-20 text-center md:min-h-[80vh]">
           <RevealOnScroll>
-            <Eyebrow>Formulário · demonstração</Eyebrow>
+            <Eyebrow>Recebido</Eyebrow>
           </RevealOnScroll>
 
           <RevealOnScroll delay={120}>
             <h1 className="mx-auto max-w-3xl font-[family-name:var(--font-cormorant)] text-4xl leading-[1.08] font-light text-[var(--color-va-text)] md:text-6xl">
-              Um espaço para{" "}
+              Obrigada pelas suas{" "}
               <span className="italic text-[var(--color-va-silver)]">
-                te ouvir.
+                respostas.
               </span>
             </h1>
           </RevealOnScroll>
 
           <RevealOnScroll delay={280}>
             <p className="mt-8 max-w-2xl text-base leading-relaxed text-[var(--color-va-silver)] md:text-xl">
-              Leva poucos minutos. Suas respostas chegam direto à Valquiria — não
-              existe certo ou errado, só o que é verdadeiro para você.
+              Já recebi tudo por aqui. Vou analisar com cuidado cada resposta para
+              entender o seu temperamento e, em breve, a Valquiria entra em
+              contato. Até lá, fica o convite para respirar e seguir com leveza.
             </p>
           </RevealOnScroll>
 
-          {/* Form sem RevealOnScroll: renderiza de imediato ao entrar na página,
-              sem esperar o scroll levá-lo à viewport. */}
-          <div className="mt-12 w-full">
-            <FormExemplo />
-          </div>
+          <RevealOnScroll delay={420}>
+            <div className="mt-12">
+              <CtaButton href="/">Voltar ao início</CtaButton>
+            </div>
+          </RevealOnScroll>
         </Container>
       </section>
 

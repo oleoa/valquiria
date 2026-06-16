@@ -8,7 +8,6 @@ import SpiralOrnament from "@/components/SpiralOrnament";
 import RevealOnScroll from "@/components/RevealOnScroll";
 import Faq from "@/components/Faq";
 import {
-  WHATSAPP_DUVIDAS_URL,
   INSTAGRAM_URL,
   STRIPE_COMBO_URL,
   STRIPE_COMPORTAMENTAL_URL,
@@ -18,11 +17,11 @@ import { COMPORTAMENTO_FAQ } from "@/lib/faq-data";
 export const metadata: Metadata = {
   title: "Análise de Comportamento — Valquiria Abreu",
   description:
-    "Enxergue os padrões que você repete no dia a dia — o que te impulsiona e o que te sabota. 2 sessões online, relatório personalizado e 10 dias de suporte no WhatsApp com a mentora comportamental Valquiria Abreu.",
+    "Enxergue os padrões que você repete no dia a dia — o que te impulsiona e o que te sabota. 2 sessões online, relatório personalizado e 10 dias de suporte com a mentora comportamental Valquiria Abreu.",
   openGraph: {
     title: "Análise de Comportamento — Valquiria Abreu",
     description:
-      "Enxergue os padrões que você repete no dia a dia — o que te impulsiona e o que te sabota. 2 sessões online, relatório personalizado e 10 dias de suporte no WhatsApp.",
+      "Enxergue os padrões que você repete no dia a dia — o que te impulsiona e o que te sabota. 2 sessões online, relatório personalizado e 10 dias de suporte.",
     url: "/comportamento",
     siteName: "Valquiria Abreu",
     locale: "pt_BR",
@@ -82,7 +81,7 @@ export default function ComportamentoPage() {
         <Container className="relative z-10 flex flex-col items-center pt-6 pb-20 text-center md:min-h-[88vh] md:justify-center md:py-28">
           <RevealOnScroll>
             <p className="mb-8 text-[0.72rem] font-medium tracking-[0.32em] text-[var(--color-va-silver-mute)] uppercase">
-              Análise comportamental · autoconhecimento
+              Análise de comportamento
             </p>
           </RevealOnScroll>
 
@@ -130,7 +129,7 @@ export default function ComportamentoPage() {
             <h2 className="mx-auto max-w-3xl text-center font-[family-name:var(--font-cormorant)] text-4xl leading-[1.1] font-light text-[var(--color-va-text)] md:text-6xl">
               Talvez você reconheça{" "}
               <span className="italic text-[var(--color-va-silver)]">
-                estas cenas.
+                estas situações.
               </span>
             </h2>
           </RevealOnScroll>
@@ -254,7 +253,7 @@ export default function ComportamentoPage() {
                   ),
                   titulo: "10 dias de suporte",
                   corpo:
-                    "Dez dias de acompanhamento pelo WhatsApp para sustentar as suas primeiras mudanças.",
+                    "Dez dias de acompanhamento para sustentar as suas primeiras mudanças.",
                 },
               ].map((card) => (
                 <article
@@ -365,7 +364,7 @@ export default function ComportamentoPage() {
                       "2 sessões online comigo",
                       "Relatório personalizado com os seus padrões",
                       "Estratégia para agir diferente no dia a dia",
-                      "10 dias de suporte no WhatsApp",
+                      "10 dias de suporte",
                     ].map((item) => (
                       <li key={item} className="flex items-center gap-3">
                         <Check
@@ -445,12 +444,12 @@ export default function ComportamentoPage() {
             <p className="mt-12 text-center text-sm text-[var(--color-va-silver-mute)]">
               Ficou com dúvida?{" "}
               <a
-                href={WHATSAPP_DUVIDAS_URL}
+                href={INSTAGRAM_URL}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-[var(--color-va-silver)] underline decoration-[var(--color-va-border-up)] underline-offset-4 transition-colors hover:text-[var(--color-va-text)]"
               >
-                Fale comigo no WhatsApp
+                Fale comigo no Instagram
               </a>
               .
             </p>
@@ -496,14 +495,6 @@ export default function ComportamentoPage() {
               className="flex items-center gap-8 text-sm text-[var(--color-va-silver-mute)]"
               aria-label="Rodapé"
             >
-              <a
-                href={WHATSAPP_DUVIDAS_URL}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="transition-colors hover:text-[var(--color-va-text)]"
-              >
-                WhatsApp
-              </a>
               <a
                 href={INSTAGRAM_URL}
                 target="_blank"

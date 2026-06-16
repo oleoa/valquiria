@@ -6,7 +6,7 @@ import Eyebrow from "@/components/Eyebrow";
 import SpiralOrnament from "@/components/SpiralOrnament";
 import RevealOnScroll from "@/components/RevealOnScroll";
 import { cn } from "@/lib/cn";
-import { WHATSAPP_DUVIDAS_URL, INSTAGRAM_URL } from "@/lib/config";
+import { INSTAGRAM_URL } from "@/lib/config";
 import { SITE_PAGES, GRUPOS_PAGINAS } from "@/lib/site-pages";
 
 export const metadata: Metadata = {
@@ -154,14 +154,6 @@ export default function DashboardPage() {
               className="flex items-center gap-8 text-sm text-[var(--color-va-silver-mute)]"
               aria-label="Rodapé"
             >
-              <a
-                href={WHATSAPP_DUVIDAS_URL}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="transition-colors hover:text-[var(--color-va-text)]"
-              >
-                WhatsApp
-              </a>
               <a
                 href={INSTAGRAM_URL}
                 target="_blank"

@@ -6,13 +6,13 @@ import Eyebrow from "@/components/Eyebrow";
 import SpiralOrnament from "@/components/SpiralOrnament";
 import RevealOnScroll from "@/components/RevealOnScroll";
 import { INSTAGRAM_URL } from "@/lib/config";
-import FormExemplo from "./FormExemplo";
+import FormAnaliseTemperamento from "./FormAnaliseTemperamento";
 
 export const metadata: Metadata = {
-  title: "Formulário de exemplo — Valquiria Abreu",
+  title: "Análise de Temperamento — Valquiria Abreu",
   description:
-    "Formulário de demonstração do padrão de formulários internos da Valquiria Abreu.",
-  // Formulário interno/demo — fora do índice de busca.
+    "Questionário de temperamento da Valquiria Abreu — algumas perguntas para entender o seu temperamento.",
+  // Formulário interno — fora do índice de busca.
   robots: { index: false, follow: false },
 };
 
@@ -20,7 +20,7 @@ export const metadata: Metadata = {
 /*  PÁGINA — perguntas (Server Component; o form em si é client)        */
 /* ------------------------------------------------------------------ */
 
-export default function FormularioExemploPage() {
+export default function FormularioAnaliseTemperamentoPage() {
   return (
     <main className="relative">
       {/* ============================== HEADER ============================== */}
@@ -47,29 +47,32 @@ export default function FormularioExemploPage() {
 
         <Container className="relative z-10 flex flex-col items-center pt-8 pb-20 text-center md:py-24">
           <RevealOnScroll>
-            <Eyebrow>Formulário · demonstração</Eyebrow>
+            <Eyebrow>Formulário · Análise de Temperamento</Eyebrow>
           </RevealOnScroll>
 
           <RevealOnScroll delay={120}>
             <h1 className="mx-auto max-w-3xl font-[family-name:var(--font-cormorant)] text-4xl leading-[1.08] font-light text-[var(--color-va-text)] md:text-6xl">
-              Um espaço para{" "}
+              Análise de{" "}
               <span className="italic text-[var(--color-va-silver)]">
-                te ouvir.
+                temperamento.
               </span>
             </h1>
           </RevealOnScroll>
 
           <RevealOnScroll delay={280}>
             <p className="mt-8 max-w-2xl text-base leading-relaxed text-[var(--color-va-silver)] md:text-xl">
-              Leva poucos minutos. Suas respostas chegam direto à Valquiria — não
-              existe certo ou errado, só o que é verdadeiro para você.
+              A intenção desse questionário é entender qual o seu temperamento.
+              Sugiro que reserve um tempo com calma para responder, pegue uma
+              xícara de café e aproveite o momento. É DE EXTREMA IMPORTÂNCIA que
+              você tenha objetividade nas respostas! Só assim conseguirei analisar
+              e te fornecer informações valiosas!
             </p>
           </RevealOnScroll>
 
           {/* Form sem RevealOnScroll: renderiza de imediato ao entrar na página,
               sem esperar o scroll levá-lo à viewport. */}
           <div className="mt-12 w-full">
-            <FormExemplo />
+            <FormAnaliseTemperamento />
           </div>
         </Container>
       </section>

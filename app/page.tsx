@@ -1,12 +1,12 @@
 import type { Metadata } from "next";
 import Image from "next/image";
-import { Check, Mail } from "lucide-react";
+import { ArrowRight, Check, Mail } from "lucide-react";
 import Container from "@/components/Container";
 import Eyebrow from "@/components/Eyebrow";
 import SpiralOrnament from "@/components/SpiralOrnament";
 import RevealOnScroll from "@/components/RevealOnScroll";
 import InstagramIcon from "@/components/icons/InstagramIcon";
-import { INSTAGRAM_URL, EMAIL, EMAIL_URL } from "@/lib/config";
+import { INSTAGRAM_URL, EMAIL, EMAIL_URL, STRIPE_COMBO_URL } from "@/lib/config";
 
 export const metadata: Metadata = {
   title: "Valquiria Abreu — Mentora Comportamental para Mulheres",
@@ -261,6 +261,13 @@ export default function HomePage() {
                     </li>
                   ))}
                 </ul>
+
+                <p className="mt-10 border-t border-[var(--color-va-border-up)] pt-8 font-[family-name:var(--font-cormorant)] text-2xl leading-snug font-light text-[var(--color-va-text)] md:text-3xl">
+                  Ajudo mães a criarem filhos emocionalmente saudáveis,{" "}
+                  <span className="italic text-[var(--color-va-silver)]">
+                    curando primeiro a si mesmas.
+                  </span>
+                </p>
               </div>
             </RevealOnScroll>
           </div>
@@ -365,6 +372,98 @@ export default function HomePage() {
             </div>
           </RevealOnScroll>
 
+        </Container>
+      </section>
+
+      {/* ============================== CONHEÇA OS PRODUTOS ============================== */}
+      <section className="relative py-24 md:py-32 lg:py-40">
+        <Container>
+          <RevealOnScroll>
+            <Eyebrow>Conheça os produtos</Eyebrow>
+            <h2 className="mx-auto max-w-3xl text-center font-[family-name:var(--font-cormorant)] text-4xl leading-[1.1] font-light text-[var(--color-va-text)] md:text-6xl">
+              Dê o primeiro passo para{" "}
+              <span className="italic text-[var(--color-va-silver)]">
+                se entender.
+              </span>
+            </h2>
+          </RevealOnScroll>
+
+          <RevealOnScroll delay={120}>
+            <p className="mx-auto mt-8 max-w-2xl text-center text-base leading-relaxed text-[var(--color-va-silver)] md:text-lg">
+              As análises são o ponto de partida: dois encontros comigo, um
+              relatório só seu e 10 dias de suporte para enxergar o que te move —
+              e o que te trava.
+            </p>
+          </RevealOnScroll>
+
+          {/* Dois cards: cada um leva para a landing do produto */}
+          <RevealOnScroll delay={280}>
+            <div className="mx-auto mt-16 grid max-w-4xl grid-cols-1 gap-5 md:grid-cols-2 md:gap-6">
+              {[
+                {
+                  titulo: "Análise de Temperamento",
+                  corpo:
+                    "Entenda o seu temperamento e o que impulsiona — ou bloqueia — as suas decisões.",
+                  href: "/analise",
+                },
+                {
+                  titulo: "Análise de Comportamento",
+                  corpo:
+                    "Enxergue os padrões que você repete no dia a dia — e como mudar de verdade.",
+                  href: "/comportamento",
+                },
+              ].map((produto) => (
+                <a
+                  key={produto.titulo}
+                  href={produto.href}
+                  className="group flex flex-col rounded-2xl border border-[var(--color-va-border)] bg-[var(--color-va-bg-soft)] p-8 transition-all duration-300 hover:-translate-y-0.5 hover:border-[var(--color-va-border-up)] md:p-10"
+                >
+                  <h3 className="font-[family-name:var(--font-cormorant)] text-2xl leading-tight font-medium text-[var(--color-va-text)] md:text-3xl">
+                    {produto.titulo}
+                  </h3>
+                  <p className="mt-3 text-sm leading-relaxed text-[var(--color-va-silver)] md:text-base">
+                    {produto.corpo}
+                  </p>
+                  <p className="mt-6 text-xs tracking-[0.12em] text-[var(--color-va-silver-mute)] uppercase">
+                    2 sessões online · relatório personalizado · 10 dias de suporte
+                  </p>
+                  <div className="mt-auto flex items-baseline justify-between border-t border-[var(--color-va-border-up)] pt-6">
+                    <span className="font-[family-name:var(--font-cormorant)] text-3xl font-light text-[var(--color-va-text)]">
+                      R$ 497
+                    </span>
+                    <span className="inline-flex items-center gap-1.5 text-sm font-medium text-[var(--color-va-silver)] transition-colors group-hover:text-[var(--color-va-text)]">
+                      Conhecer
+                      <ArrowRight
+                        className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-0.5"
+                        strokeWidth={1.7}
+                        aria-hidden="true"
+                      />
+                    </span>
+                  </div>
+                </a>
+              ))}
+            </div>
+          </RevealOnScroll>
+
+          {/* Reforço do combo (Stripe, abre em nova aba) */}
+          <RevealOnScroll delay={420}>
+            <p className="mt-10 text-center text-sm text-[var(--color-va-silver-mute)]">
+              Quer as duas?{" "}
+              <a
+                href={STRIPE_COMBO_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="group inline-flex items-center gap-1.5 font-medium text-[var(--color-va-silver)] underline-offset-4 transition-colors hover:text-[var(--color-va-text)] hover:underline"
+              >
+                Leve o combo por R$ 894
+                <ArrowRight
+                  className="h-3.5 w-3.5 transition-transform duration-300 group-hover:translate-x-0.5"
+                  strokeWidth={1.7}
+                  aria-hidden="true"
+                />
+              </a>
+            </p>
+          </RevealOnScroll>
         </Container>
       </section>
 

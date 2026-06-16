@@ -22,7 +22,7 @@ export const metadata: Metadata = {
   metadataBase: new URL("https://valquiriaabreu.com"),
   title: "Valquiria Abreu — Tutoria Comportamental para suas Mentoradas",
   description:
-    "A parceira que sustenta as suas mentoradas onde a sua mentoria já fez o que tinha de fazer. Tutoria comportamental mensal, com teste de personalidade individual, encontros ao vivo e suporte direto no WhatsApp.",
+    "A parceira que sustenta as suas mentoradas onde a sua mentoria já fez o que tinha de fazer. Tutoria comportamental mensal, com teste de personalidade individual, encontros ao vivo e suporte direto.",
   openGraph: {
     title: "Valquiria Abreu — Tutoria Comportamental para suas Mentoradas",
     description:

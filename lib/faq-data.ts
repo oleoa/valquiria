@@ -7,7 +7,7 @@ export const TUTORIA_FAQ: FaqItem[] = [
   },
   {
     q: "E se uma mentorada faltar à aula ao vivo?",
-    a: "Ela recebe acesso à gravação do encontro para revisitar quantas vezes quiser. O conteúdo continua disponível ao longo da jornada — e o suporte no WhatsApp segue ativo independentemente da presença ao vivo no encontro.",
+    a: "Ela recebe acesso à gravação do encontro para revisitar quantas vezes quiser. O conteúdo continua disponível ao longo da jornada — e o suporte segue ativo independentemente da presença ao vivo no encontro.",
   },
 ];
 
@@ -26,7 +26,7 @@ export const ANALISE_FAQ: FaqItem[] = [
   },
   {
     q: "Como funciona o suporte de 10 dias?",
-    a: "Durante os dez dias seguintes ao processo você fica comigo no WhatsApp para sustentar as suas primeiras mudanças — tirar dúvidas, ajustar a rota e não voltar para o piloto automático.",
+    a: "Durante os dez dias seguintes ao processo você fica comigo para sustentar as suas primeiras mudanças — tirar dúvidas, ajustar a rota e não voltar para o piloto automático.",
   },
 ];
 
@@ -45,6 +45,6 @@ export const COMPORTAMENTO_FAQ: FaqItem[] = [
   },
   {
     q: "Como funciona o suporte de 10 dias?",
-    a: "Durante os dez dias seguintes ao processo você fica comigo no WhatsApp para sustentar as suas primeiras mudanças — tirar dúvidas, ajustar a rota e não voltar para o piloto automático.",
+    a: "Durante os dez dias seguintes ao processo você fica comigo para sustentar as suas primeiras mudanças — tirar dúvidas, ajustar a rota e não voltar para o piloto automático.",
   },
 ];

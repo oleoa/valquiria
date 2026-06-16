@@ -9,13 +9,14 @@ Público: **mentoras** e suas **mentoradas**. A proposta é dar sustentação co
 contínua onde a mentoria de negócio já entregou o que tinha de entregar. Dois serviços:
 
 - **Tutoria comportamental mensal** (`/tutoria`) — R$1.800/mês, sem fidelidade. Acompanhamento
-  emocional/comportamental contínuo + encontro ao vivo + suporte no WhatsApp.
+  emocional/comportamental contínuo + encontro ao vivo + suporte direto.
 - **Análise de Temperamento / Comportamental** (`/analise`) — R$497 cada ou R$894 o combo.
-  2 sessões online + relatório personalizado + 10 dias de suporte no WhatsApp. Há ainda uma
+  2 sessões online + relatório personalizado + 10 dias de suporte. Há ainda uma
   landing dedicada à **Análise de Comportamento** (`/comportamento`), que vende o produto
   isolado (R$497) e oferece o combo (R$894) como upsell.
 
-Conversão acontece via WhatsApp e checkout do Stripe — veja [Roadmap](#foco-atual--roadmap).
+Conversão acontece via checkout do Stripe; o contato/atendimento é pelo Instagram e a conversa
+com a mentorada acontece **após a compra** — veja [Roadmap](#foco-atual--roadmap).
 
 ## Stack
 
@@ -51,15 +52,19 @@ A refatoração atual estabeleceu este padrão — **siga-o**:
   [site-pages.ts](lib/site-pages.ts) (catálogo de páginas — **fonte única de verdade do
   `/dashboard`**).
 - Import alias: `@/*` → raiz. Ex.: `import Container from "@/components/Container"`,
-  `import { WHATSAPP_URL } from "@/lib/config"`.
+  `import { INSTAGRAM_URL } from "@/lib/config"`.
 
 ## Convenções de código
 
 - **Server Components por padrão.** Use `"use client"` só quando há estado/efeito —
   ex.: [Faq.tsx](components/Faq.tsx) (accordion) e [RevealOnScroll.tsx](components/RevealOnScroll.tsx)
   (IntersectionObserver).
-- **Nunca hardcode** WhatsApp, Instagram ou Stripe nas páginas — sempre importe de
+- **Nunca hardcode** Instagram ou Stripe nas páginas — sempre importe de
   [lib/config.ts](lib/config.ts).
+- **Sem WhatsApp.** O projeto **não usa WhatsApp** como canal — não adicione links `wa.me`,
+  botões, ícone nem copy mencionando WhatsApp. Contato/atendimento é pelo **Instagram**
+  (`INSTAGRAM_URL`) e e-mail; a conversa com a mentorada acontece **após a compra** (checkout
+  Stripe). Não recrie `WHATSAPP_URL`/`WHATSAPP_DUVIDAS_URL` em [lib/config.ts](lib/config.ts).
 - **Estilo:** classes Tailwind inline + tokens `--color-va-*`. Use `cn()` para merge
   condicional. Headlines em **Cormorant Garamond** (serifa); corpo em **Inter** (ambas
   carregadas em [app/layout.tsx](app/layout.tsx)).
@@ -102,15 +107,18 @@ Use [app/forms/exemplo/](app/forms/exemplo/) como modelo (é uma demo descartáv
 
 **Envio de e-mail (fonte única).** Toda submissão passa pela Server Action `enviarFormulario`
 em [lib/forms/enviar.ts](lib/forms/enviar.ts) — **não recrie lógica de e-mail nas páginas**. Ela
-envia via **Resend** para o `EMAIL` da Valquiria, com remetente `FORM_FROM_EMAIL` (ambos em
-[lib/config.ts](lib/config.ts) — nunca hardcode e-mail na página). Fluxo no client: monta as
+envia pelo **Strutura Email Gateway** (`POST` em `EMAIL_GATEWAY_URL`, ver
+[EMAIL-GATEWAY.md](EMAIL-GATEWAY.md)) para o `EMAIL` da Valquiria, com display name de remetente
+`FORM_FROM_NAME` (tudo em [lib/config.ts](lib/config.ts) — nunca hardcode e-mail/endpoint na
+página). O gateway controla o domínio do From (sempre `noreply@strutura.ai`) e aceita só `html`
+(sem `text`); o envio faz retry em erro transitório (5xx/429). Fluxo no client: monta as
 respostas, chama a action e **só** navega para `/forms/<slug>/obrigado` (via `router.push` de
 `next/navigation`) quando o retorno é `{ ok: true }`; em erro, mostra a mensagem e reabilita o
 botão. Não use `redirect()` dentro da action.
 
-**Env:** `RESEND_API_KEY` em `.env.local` (template em `.env.example`) e na Vercel
-(Production + Preview). O `from` de domínio próprio (`formularios@valquiriaabreu.com`) só entrega
-com o domínio verificado no Resend; enquanto isso, use `onboarding@resend.dev` no `FORM_FROM_EMAIL`.
+**Env:** `EMAIL_GATEWAY_KEY` (Bearer token do gateway) em `.env.local` (template em
+`.env.example`) e na Vercel (Production + Preview). A chave é gerada/entregue pelo mantenedor do
+gateway; nunca integre Resend/SMTP/SES direto — sempre passe pelo gateway.
 
 **Ao criar um formulário novo (passos obrigatórios):**
 1. Criar as duas páginas (`page.tsx` + `obrigado/page.tsx`) e o form client.

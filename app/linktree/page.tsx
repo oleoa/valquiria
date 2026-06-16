@@ -4,17 +4,17 @@ import Link from "next/link";
 import { ArrowRight, Activity, Compass, Globe } from "lucide-react";
 import SpiralOrnament from "@/components/SpiralOrnament";
 import RevealOnScroll from "@/components/RevealOnScroll";
-import WhatsAppIcon from "@/components/icons/WhatsAppIcon";
-import { WHATSAPP_URL } from "@/lib/config";
+import InstagramIcon from "@/components/icons/InstagramIcon";
+import { INSTAGRAM_URL } from "@/lib/config";
 
 export const metadata: Metadata = {
   title: "Valquiria Abreu — Links",
   description:
-    "Todos os canais da Valquiria Abreu — Mentora Comportamental. WhatsApp, Instagram e a tutoria.",
+    "Todos os canais da Valquiria Abreu — Mentora Comportamental. Instagram e a tutoria.",
   openGraph: {
     title: "Valquiria Abreu — Links",
     description:
-      "Todos os canais da Valquiria Abreu — Mentora Comportamental. WhatsApp, Instagram e a tutoria.",
+      "Todos os canais da Valquiria Abreu — Mentora Comportamental. Instagram e a tutoria.",
     siteName: "Valquiria Abreu",
     locale: "pt_BR",
     type: "website",
@@ -123,13 +123,13 @@ export default function ValquiriaLinksPage() {
 
           <RevealOnScroll delay={240}>
             <a
-              href={WHATSAPP_URL}
+              href={INSTAGRAM_URL}
               target="_blank"
               rel="noopener noreferrer"
               className={`${linkBase} border border-[var(--color-va-border-up)] bg-transparent text-[var(--color-va-text)] hover:border-[var(--color-va-silver-mute)] hover:bg-[var(--color-va-blue)]/[0.06]`}
             >
-              <WhatsAppIcon className="h-5 w-5 shrink-0 text-[var(--color-va-silver)]" />
-              <span className="flex-1 text-center">WhatsApp</span>
+              <InstagramIcon className="h-5 w-5 shrink-0 text-[var(--color-va-silver)]" />
+              <span className="flex-1 text-center">Instagram</span>
               <ArrowRight
                 className="h-5 w-5 shrink-0 text-[var(--color-va-silver)] transition-transform duration-300 group-hover:translate-x-0.5"
                 strokeWidth={1.7}

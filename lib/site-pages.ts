@@ -34,9 +34,9 @@ export const SITE_PAGES: SitePage[] = [
     titulo: "Análise de Temperamento e Comportamento",
     href: "/analise",
     descricao:
-      "Página de venda da análise: 2 sessões online, relatório personalizado e 10 dias de suporte no WhatsApp.",
+      "Landing da Análise de Temperamento: 2 sessões online, relatório personalizado e 10 dias de suporte. Oferece o combo como upsell.",
     categoria: "produto",
-    nota: "R$ 497 cada · R$ 894 o combo",
+    nota: "R$ 497 · R$ 894 no combo",
   },
   {
     titulo: "Análise de Comportamento",
@@ -50,7 +50,7 @@ export const SITE_PAGES: SitePage[] = [
     titulo: "Tutoria Comportamental Mensal",
     href: "/tutoria",
     descricao:
-      "Página de venda da tutoria contínua para mentoras: encontro mensal ao vivo, relatório individual e suporte no WhatsApp.",
+      "Página de venda da tutoria contínua para mentoras: encontro mensal ao vivo, relatório individual e suporte.",
     categoria: "produto",
     nota: "R$ 1.800/mês · sem fidelidade",
   },
@@ -63,6 +63,22 @@ export const SITE_PAGES: SitePage[] = [
       "Questionário de personalidade Big Five usado nos produtos — hospedado em site/servidor separado.",
     categoria: "formulario",
     nota: "Externo · bigfive.valquiriaabreu.com",
+  },
+  {
+    titulo: "Questionário Raio X",
+    href: "/forms/raio-x",
+    descricao:
+      "Questionário de autoconhecimento (raio X): 19 perguntas que coletam o momento da pessoa e enviam por e-mail à Valquiria.",
+    categoria: "formulario",
+    nota: "19 perguntas · envia por e-mail",
+  },
+  {
+    titulo: "Análise de Temperamento",
+    href: "/forms/analise-temperamento",
+    descricao:
+      "Questionário de temperamento: 26 perguntas (abertas + múltipla escolha) que mapeiam o temperamento da pessoa e enviam por e-mail à Valquiria.",
+    categoria: "formulario",
+    nota: "26 perguntas · envia por e-mail",
   },
   {
     titulo: "Formulário de exemplo (demo)",
