@@ -1,17 +1,22 @@
 "use server";
 
 /*
- * Envio de formulários — fonte única do "encanamento" de e-mail (app/forms/*).
+ * Envio de formulários (app/forms/*).
  *
- * Cada formulário é uma página própria e hardcoded, mas TODOS reusam esta Server
- * Action para mandar as respostas por e-mail. Não recrie lógica de e-mail nas páginas.
+ * Cada formulário é uma página própria e hardcoded, mas TODOS reusam esta Server Action
+ * para mandar as respostas por e-mail. O "encanamento" de envio (POST autenticado +
+ * retry) mora em lib/email/gateway.ts — não recrie lógica de e-mail aqui nem nas páginas.
  *
- * O e-mail vai pelo Strutura Email Gateway (POST autenticado por Bearer token) para o
- * EMAIL da Valquiria. O domínio do remetente é fixo no gateway (noreply@strutura.ai);
- * só o display name (FORM_FROM_NAME) é nosso. Detalhes do gateway em EMAIL-GATEWAY.md.
+ * O e-mail vai para o EMAIL da Valquiria, com display name FORM_FROM_NAME e replyTo no
+ * próprio EMAIL. Detalhes do gateway em EMAIL-GATEWAY.md.
  */
 
-import { EMAIL, EMAIL_GATEWAY_URL, FORM_FROM_NAME } from "@/lib/config";
+import { EMAIL, EMAIL_COPIA, FORM_FROM_NAME } from "@/lib/config";
+import { enviarEmail, escaparHtml } from "@/lib/email/gateway";
+import { salvarSubmissao } from "@/lib/forms/salvar";
+
+/** Resultado tipado para o client decidir redirect (ok) ou mostrar erro. */
+export type { ResultadoEnvio } from "@/lib/email/gateway";
 
 /** Uma pergunta do formulário com a resposta dada. */
 export type RespostaFormulario = {
@@ -31,45 +36,14 @@ export type DadosFormulario = {
   respostas: RespostaFormulario[];
 };
 
-/** Resultado tipado para o client decidir redirect (ok) ou mostrar erro. */
-export type ResultadoEnvio = { ok: true } | { ok: false; erro: string };
-
-/** Quantas vezes tentamos o gateway antes de desistir (em erro transitório). */
-const MAX_TENTATIVAS = 3;
-
-/** Escapa HTML do corpo do e-mail — as respostas são entrada de usuário. */
-function escaparHtml(texto: string): string {
-  return texto
-    .replace(/&/g, "&amp;")
-    .replace(/</g, "&lt;")
-    .replace(/>/g, "&gt;")
-    .replace(/"/g, "&quot;")
-    .replace(/'/g, "&#39;");
-}
-
-/** Espera `ms` milissegundos — usado no backoff entre retentativas. */
-function esperar(ms: number): Promise<void> {
-  return new Promise((resolve) => setTimeout(resolve, ms));
-}
-
 /**
  * Envia as respostas de um formulário por e-mail para a Valquiria.
  * Retorna { ok: true } em caso de sucesso — o client só então navega para o /obrigado.
  */
-export async function enviarFormulario(
-  dados: DadosFormulario,
-): Promise<ResultadoEnvio> {
-  // A chave é lida AQUI (em request), nunca no topo do módulo — assim o build
-  // não quebra quando a env não está presente.
-  const apiKey = process.env.EMAIL_GATEWAY_KEY;
-  if (!apiKey) {
-    console.error("EMAIL_GATEWAY_KEY ausente — formulário não enviado.");
-    return { ok: false, erro: "Configuração de e-mail indisponível no momento." };
-  }
-
+export async function enviarFormulario(dados: DadosFormulario) {
   // Validação mínima no servidor (defesa em profundidade — o client também valida).
   if (!dados?.respostas?.length) {
-    return { ok: false, erro: "Nenhuma resposta recebida." };
+    return { ok: false as const, erro: "Nenhuma resposta recebida." };
   }
 
   const corpoHtml = dados.respostas
@@ -81,10 +55,8 @@ export async function enviarFormulario(
     )
     .join("");
 
-  // Body do gateway: só html (não há campo `text`). From = noreply@strutura.ai com o
-  // display name FORM_FROM_NAME; replyTo aponta para o próprio EMAIL da Valquiria.
-  const body = JSON.stringify({
-    to: EMAIL,
+  // Opções comuns ao envio principal e à cópia — só o destinatário (`to`) muda.
+  const opcoes = {
     fromName: FORM_FROM_NAME,
     subject: `Novo formulário: ${dados.titulo}`,
     replyTo: EMAIL,
@@ -92,48 +64,45 @@ export async function enviarFormulario(
       `<div style="font-family:Arial,Helvetica,sans-serif;color:#0e1823;font-size:15px">` +
       `<h2 style="font-weight:600;margin:0 0 20px">${escaparHtml(dados.titulo)}</h2>` +
       `${corpoHtml}</div>`,
-  });
+  };
 
-  // Retry só em erro transitório (5xx/429 ou falha de rede) com backoff exponencial.
-  // 4xx é erro de payload/auth — não adianta repetir, aborta na hora.
-  for (let tentativa = 1; tentativa <= MAX_TENTATIVAS; tentativa++) {
-    try {
-      const res = await fetch(EMAIL_GATEWAY_URL, {
-        method: "POST",
-        headers: {
-          Authorization: `Bearer ${apiKey}`,
-          "Content-Type": "application/json",
-        },
-        body,
-      });
+  // Persiste no banco (fonte durável de verdade) e notifica por e-mail, em paralelo. A
+  // submissão conta como capturada se QUALQUER um dos dois der certo — só mostramos erro à
+  // usuária se AMBOS falharem. allSettled (não all) porque queremos sucesso parcial; como
+  // enviarEmail/salvarSubmissao retornam { ok:false } em vez de lançar, checamos .value.ok.
+  const [banco, email] = await Promise.allSettled([
+    salvarSubmissao(dados),
+    enviarEmail({ ...opcoes, to: EMAIL }),
+  ]);
 
-      if (res.ok) {
-        return { ok: true };
-      }
+  const bancoOk = banco.status === "fulfilled" && banco.value.ok;
+  const emailOk = email.status === "fulfilled" && email.value.ok;
 
-      if (res.status < 500 && res.status !== 429) {
-        console.error(
-          `Email gateway recusou (${res.status}):`,
-          await res.text().catch(() => ""),
-        );
-        return { ok: false, erro: "Não foi possível enviar agora. Tente novamente." };
-      }
+  if (!bancoOk) {
+    console.error(
+      "Submissão não persistida:",
+      banco.status === "rejected" ? banco.reason : banco.value,
+    );
+  }
+  if (!emailOk) {
+    console.error(
+      "E-mail não enviado:",
+      email.status === "rejected" ? email.reason : email.value,
+    );
+  }
 
-      console.error(
-        `Email gateway instável (${res.status}), tentativa ${tentativa}/${MAX_TENTATIVAS}.`,
-      );
-    } catch (e) {
-      console.error(
-        `Falha de rede no envio (tentativa ${tentativa}/${MAX_TENTATIVAS}):`,
-        e,
-      );
-    }
-
-    // Backoff antes da próxima tentativa (400ms, 800ms); não espera após a última.
-    if (tentativa < MAX_TENTATIVAS) {
-      await esperar(400 * 2 ** (tentativa - 1));
+  // Redundância best-effort: cópia para uma caixa monitorada (se EMAIL_COPIA estiver
+  // configurada), pra um lead não se perder caso a entrega principal falhe em silêncio.
+  // NÃO afeta o retorno ao client — a usuária não deve ver erro por causa da cópia.
+  if (EMAIL_COPIA) {
+    const copia = await enviarEmail({ ...opcoes, to: EMAIL_COPIA });
+    if (!copia.ok) {
+      console.error(`Falha ao enviar cópia para ${EMAIL_COPIA}:`, copia.erro);
     }
   }
 
-  return { ok: false, erro: "Não foi possível enviar agora. Tente novamente." };
+  if (!bancoOk && !emailOk) {
+    return { ok: false as const, erro: "Não foi possível enviar agora. Tente novamente." };
+  }
+  return { ok: true as const };
 }

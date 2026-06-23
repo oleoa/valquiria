@@ -20,13 +20,13 @@ const inter = Inter({
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://valquiriaabreu.com"),
-  title: "Valquiria Abreu — Tutoria Comportamental para suas Mentoradas",
+  title: "Valquiria Abreu — Mentora Comportamental para Mulheres",
   description:
-    "A parceira que sustenta as suas mentoradas onde a sua mentoria já fez o que tinha de fazer. Tutoria comportamental mensal, com teste de personalidade individual, encontros ao vivo e suporte direto.",
+    "Permita-se ser produtiva sem se aprisionar, realizada sem se anular. Conheça a Valquiria Abreu, mentora comportamental, e uma nova relação com o tempo, o trabalho e você mesma.",
   openGraph: {
-    title: "Valquiria Abreu — Tutoria Comportamental para suas Mentoradas",
+    title: "Valquiria Abreu — Mentora Comportamental para Mulheres",
     description:
-      "A parceira que sustenta as suas mentoradas onde a sua mentoria já fez o que tinha de fazer. Tutoria comportamental mensal, com teste de personalidade individual.",
+      "Uma nova relação com o tempo, com o trabalho e, principalmente, com você mesma. Conheça os caminhos da mentora comportamental Valquiria Abreu.",
     url: "/",
     siteName: "Valquiria Abreu",
     locale: "pt_BR",
@@ -36,7 +36,7 @@ export const metadata: Metadata = {
         url: "/logo-2.png",
         width: 1200,
         height: 1200,
-        alt: "Valquiria Abreu — Tutoria Comportamental",
+        alt: "Valquiria Abreu — Mentora Comportamental",
       },
     ],
   },

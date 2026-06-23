@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { ArrowRight } from "lucide-react";
+import Textarea from "@/components/Textarea";
 import { enviarFormulario, type RespostaFormulario } from "@/lib/forms/enviar";
 
 /*
@@ -33,7 +34,14 @@ const OPCAO =
  * `tipo "opcoes"` = escolha única (radios). Todas são obrigatórias (têm `*` no Notion).
  */
 type Pergunta =
-  | { tipo: "texto"; name: string; label: string; autoComplete?: string }
+  | {
+      tipo: "texto";
+      name: string;
+      label: string;
+      autoComplete?: string;
+      // `multilinha` troca o <input> por um <textarea> auto-crescente (respostas abertas).
+      multilinha?: boolean;
+    }
   | { tipo: "telefone"; name: string; label: string }
   | { tipo: "opcoes"; name: string; label: string; opcoes: string[] };
 
@@ -71,28 +79,33 @@ const PERGUNTAS: Pergunta[] = [
     name: "escolaComportamento",
     label:
       "Na escola como era seu comportamento? Quais sentimentos você se recorda de sentir?",
+    multilinha: true,
   },
   {
     tipo: "texto",
     name: "decisao",
     label:
       "Como é pra você quando precisa tomar uma decisão? O que sente? Qual maior conflito?",
+    multilinha: true,
   },
   {
     tipo: "texto",
     name: "amigos",
     label:
       "Você é uma pessoa de muitos amigos? O quanto é importante pra você nutrir amizades?",
+    multilinha: true,
   },
   {
     tipo: "texto",
     name: "relacaoPais",
     label: "Como era seu relacionamento com seus pais?",
+    multilinha: true,
   },
   {
     tipo: "texto",
     name: "dizerNao",
     label: "Você tem dificuldade em dizer não? Porque?",
+    multilinha: true,
   },
   {
     tipo: "opcoes",
@@ -109,53 +122,63 @@ const PERGUNTAS: Pergunta[] = [
     tipo: "texto",
     name: "fatosInfancia",
     label: "Me conta 3 fatos marcantes da sua infância",
+    multilinha: true,
   },
   {
     tipo: "texto",
     name: "festasAniversario",
     label: "Na infância você gostava de festas de aniversário?",
+    multilinha: true,
   },
   {
     tipo: "texto",
     name: "admira",
     label: "O que você mais admira em uma pessoa? Qual qualidade? Porque?",
+    multilinha: true,
   },
   {
     tipo: "texto",
     name: "rotina",
     label:
       "Você gosta de rotina ou se sente presa com uma rotina? Me explique sua resposta.",
+    multilinha: true,
   },
   {
     tipo: "texto",
     name: "grupoDesconhecido",
     label:
       "Em um grupo desconhecido, você consegue se enturmar com facilidade ou tem dificuldade? Sempre foi assim?",
+    multilinha: true,
   },
   {
     tipo: "texto",
     name: "respondona",
     label: "Você era uma criança respondona?",
+    multilinha: true,
   },
   {
     tipo: "texto",
     name: "paisRigidos",
     label: "Seus pais eram rígidos ou flexíveis?",
+    multilinha: true,
   },
   {
     tipo: "texto",
     name: "relaxar",
     label: "Depois de um dia estressante o que te faz relaxar?",
+    multilinha: true,
   },
   {
     tipo: "texto",
     name: "rapidezExcelencia",
     label: "Entre a rapidez e a excelência, qual você escolhe?",
+    multilinha: true,
   },
   {
     tipo: "texto",
     name: "flexivelRigida",
     label: "Você se considera uma pessoa flexível ou rígida? Explique o motivo.",
+    multilinha: true,
   },
   {
     tipo: "opcoes",
@@ -219,11 +242,13 @@ const PERGUNTAS: Pergunta[] = [
     tipo: "texto",
     name: "notaBaixa",
     label: "Na infância, como você reagia a uma nota baixa?",
+    multilinha: true,
   },
   {
     tipo: "texto",
     name: "brincava",
     label: "Na infância você brincava do que?",
+    multilinha: true,
   },
   {
     tipo: "opcoes",
@@ -301,14 +326,24 @@ export default function FormAnaliseTemperamento() {
               <label htmlFor={p.name} className={ENUNCIADO}>
                 {p.label}
               </label>
-              <input
-                id={p.name}
-                name={p.name}
-                type="text"
-                required
-                autoComplete={p.autoComplete ?? "off"}
-                className={CAMPO}
-              />
+              {p.multilinha ? (
+                <Textarea
+                  id={p.name}
+                  name={p.name}
+                  required
+                  autoComplete={p.autoComplete ?? "off"}
+                  className={CAMPO}
+                />
+              ) : (
+                <input
+                  id={p.name}
+                  name={p.name}
+                  type="text"
+                  required
+                  autoComplete={p.autoComplete ?? "off"}
+                  className={CAMPO}
+                />
+              )}
             </div>
           );
         }

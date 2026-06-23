@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { ArrowRight } from "lucide-react";
+import Textarea from "@/components/Textarea";
 import { enviarFormulario } from "@/lib/forms/enviar";
 
 /*
@@ -98,13 +99,11 @@ export default function FormExemplo() {
           Qual o seu maior desafio comportamental hoje?{" "}
           <span aria-hidden="true">*</span>
         </label>
-        <textarea
+        <Textarea
           id="desafio"
           name="desafio"
           required
-          rows={5}
           placeholder="Escreva com as suas palavras — não precisa caprichar."
-          className={`${CAMPO} resize-y`}
         />
       </div>
 

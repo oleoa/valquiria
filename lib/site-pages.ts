@@ -68,25 +68,25 @@ export const SITE_PAGES: SitePage[] = [
     titulo: "Questionário Raio X",
     href: "/forms/raio-x",
     descricao:
-      "Questionário de autoconhecimento (raio X): 19 perguntas que coletam o momento da pessoa e enviam por e-mail à Valquiria.",
+      "Questionário de autoconhecimento (raio X): 19 perguntas que coletam o momento da pessoa, salvam no banco e enviam por e-mail à Valquiria.",
     categoria: "formulario",
-    nota: "19 perguntas · envia por e-mail",
+    nota: "19 perguntas · salva no banco + e-mail",
   },
   {
     titulo: "Análise de Temperamento",
     href: "/forms/analise-temperamento",
     descricao:
-      "Questionário de temperamento: 26 perguntas (abertas + múltipla escolha) que mapeiam o temperamento da pessoa e enviam por e-mail à Valquiria.",
+      "Questionário de temperamento: 26 perguntas (abertas + múltipla escolha) que mapeiam o temperamento da pessoa, salvam no banco e enviam por e-mail à Valquiria.",
     categoria: "formulario",
-    nota: "26 perguntas · envia por e-mail",
+    nota: "26 perguntas · salva no banco + e-mail",
   },
   {
     titulo: "Formulário de exemplo (demo)",
     href: "/forms/exemplo",
     descricao:
-      "Demonstração do padrão de formulários internos: coleta respostas e envia por e-mail à Valquiria. Descartável — serve de modelo para os formulários reais.",
+      "Demonstração do padrão de formulários internos: coleta respostas, salva no banco e envia por e-mail à Valquiria. Descartável — serve de modelo para os formulários reais.",
     categoria: "formulario",
-    nota: "Demo · descartável · envia por e-mail",
+    nota: "Demo · descartável · salva no banco + e-mail",
   },
 
   // ----------------------------- Outras páginas ----------------------------
@@ -112,7 +112,15 @@ export const SITE_PAGES: SitePage[] = [
     descricao:
       "Ferramenta interna da equipe — lista todas as páginas do sistema reunidas em um só lugar.",
     categoria: "sistema",
-    nota: "Uso interno · fora do índice de busca",
+    nota: "Uso interno · requer login",
+  },
+  {
+    titulo: "Respostas dos formulários",
+    href: "/dashboard/respostas",
+    descricao:
+      "Área interna para consultar as respostas recebidas pelos formulários: filtra por formulário, busca por nome/e-mail, ordena por data, exporta CSV e exclui submissões.",
+    categoria: "sistema",
+    nota: "Uso interno · requer login",
   },
 ];
 

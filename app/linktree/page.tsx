@@ -10,11 +10,11 @@ import { INSTAGRAM_URL } from "@/lib/config";
 export const metadata: Metadata = {
   title: "Valquiria Abreu — Links",
   description:
-    "Todos os canais da Valquiria Abreu — Mentora Comportamental. Instagram e a tutoria.",
+    "Todos os canais da Valquiria Abreu — Mentora Comportamental.",
   openGraph: {
     title: "Valquiria Abreu — Links",
     description:
-      "Todos os canais da Valquiria Abreu — Mentora Comportamental. Instagram e a tutoria.",
+      "Todos os canais da Valquiria Abreu — Mentora Comportamental.",
     siteName: "Valquiria Abreu",
     locale: "pt_BR",
     type: "website",

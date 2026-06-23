@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { ArrowRight } from "lucide-react";
+import Textarea from "@/components/Textarea";
 import { enviarFormulario, type RespostaFormulario } from "@/lib/forms/enviar";
 
 /*
@@ -25,7 +26,15 @@ const ROTULO =
  * modelo da Análise de Temperamento (DDI + DDD + número).
  */
 type Pergunta =
-  | { tipo?: "texto"; name: string; label: string; type?: string; autoComplete?: string }
+  | {
+      tipo?: "texto";
+      name: string;
+      label: string;
+      type?: string;
+      autoComplete?: string;
+      // `multilinha` troca o <input> por um <textarea> auto-crescente (respostas abertas).
+      multilinha?: boolean;
+    }
   | { tipo: "telefone"; name: string; label: string };
 
 /*
@@ -56,39 +65,55 @@ const PERGUNTAS: Pergunta[] = [
   { name: "nome", label: "Seu nome", autoComplete: "name" },
   { name: "email", label: "Seu e-mail", type: "email", autoComplete: "email" },
   { tipo: "telefone", name: "telefone", label: "Seu telefone" },
-  { name: "busca", label: "O que você busca?" },
-  { name: "relacaoPais", label: "Como é sua relação com seus pais?" },
-  { name: "descrevaMae", label: "Descreva sua mãe" },
-  { name: "descrevaPai", label: "Descreva seu pai" },
-  { name: "saude", label: "Você tem algum problema de saúde? Qual?" },
+  { name: "busca", label: "O que você busca?", multilinha: true },
+  { name: "relacaoPais", label: "Como é sua relação com seus pais?", multilinha: true },
+  { name: "descrevaMae", label: "Descreva sua mãe", multilinha: true },
+  { name: "descrevaPai", label: "Descreva seu pai", multilinha: true },
+  {
+    name: "saude",
+    label: "Você tem algum problema de saúde? Qual?",
+    multilinha: true,
+  },
   {
     name: "dor",
     label:
       "Existe alguma dor frequente no seu corpo? Exemplo: enxaqueca, dores no estômago?",
+    multilinha: true,
   },
-  { name: "odeia", label: "O que você mais odeia?" },
+  { name: "odeia", label: "O que você mais odeia?", multilinha: true },
   {
     name: "pessoaDificil",
     label:
       "Existe alguma pessoa que você tem dificuldade de lidar no seu dia a dia? Me explica porque:",
+    multilinha: true,
   },
-  { name: "seDescreve", label: "Como você se descreve?" },
+  { name: "seDescreve", label: "Como você se descreve?", multilinha: true },
   { name: "objetivo", label: "Defina seu objetivo em uma frase" },
-  { name: "pontoFraco", label: "Qual seu ponto mais fraco?" },
-  { name: "pontoForte", label: "Qual seu ponto mais forte?" },
-  { name: "dificuldade", label: "Sua maior dificuldade hoje?" },
+  { name: "pontoFraco", label: "Qual seu ponto mais fraco?", multilinha: true },
+  { name: "pontoForte", label: "Qual seu ponto mais forte?", multilinha: true },
+  { name: "dificuldade", label: "Sua maior dificuldade hoje?", multilinha: true },
   {
     name: "ansiedade",
     label: "Existe algum momento do dia que você fica mais ansiosa, estressada?",
+    multilinha: true,
   },
-  { name: "felizes", label: "Me conta 3 acontecimentos felizes da sua vida" },
-  { name: "tristes", label: "Me conta 3 acontecimentos tristes da sua vida" },
+  {
+    name: "felizes",
+    label: "Me conta 3 acontecimentos felizes da sua vida",
+    multilinha: true,
+  },
+  {
+    name: "tristes",
+    label: "Me conta 3 acontecimentos tristes da sua vida",
+    multilinha: true,
+  },
   {
     name: "orgulho",
     label: "Olhando pra sua jornada, do que mais sente orgulho?",
+    multilinha: true,
   },
-  { name: "feliz", label: "O que te faz feliz?" },
-  { name: "admira", label: "O que mais admira em alguém?" },
+  { name: "feliz", label: "O que te faz feliz?", multilinha: true },
+  { name: "admira", label: "O que mais admira em alguém?", multilinha: true },
 ];
 
 export default function FormRaioX() {
@@ -201,14 +226,24 @@ export default function FormRaioX() {
             <label htmlFor={p.name} className={ROTULO}>
               {p.label}
             </label>
-            <input
-              id={p.name}
-              name={p.name}
-              type={p.type ?? "text"}
-              required
-              autoComplete={p.autoComplete ?? "off"}
-              className={CAMPO}
-            />
+            {p.multilinha ? (
+              <Textarea
+                id={p.name}
+                name={p.name}
+                required
+                autoComplete={p.autoComplete ?? "off"}
+                className={CAMPO}
+              />
+            ) : (
+              <input
+                id={p.name}
+                name={p.name}
+                type={p.type ?? "text"}
+                required
+                autoComplete={p.autoComplete ?? "off"}
+                className={CAMPO}
+              />
+            )}
           </div>
         );
       })}

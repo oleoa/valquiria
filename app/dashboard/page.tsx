@@ -8,6 +8,7 @@ import RevealOnScroll from "@/components/RevealOnScroll";
 import { cn } from "@/lib/cn";
 import { INSTAGRAM_URL } from "@/lib/config";
 import { SITE_PAGES, GRUPOS_PAGINAS } from "@/lib/site-pages";
+import CabecalhoArea from "./CabecalhoArea";
 
 export const metadata: Metadata = {
   title: "Painel de Páginas — Valquiria Abreu",
@@ -31,6 +32,8 @@ export default function DashboardPage() {
 
   return (
     <main className="relative">
+      <CabecalhoArea ativo="painel" />
+
       {/* ============================== HERO ============================== */}
       <section className="relative isolate overflow-hidden">
         <div className="va-hero-glow" />
