@@ -168,6 +168,24 @@ export async function listarFormularios(): Promise<FormularioResumo[]> {
   }));
 }
 
+/** Formato de UUID — validado antes da query para evitar erro de cast do Postgres (22P02). */
+const REGEX_UUID =
+  /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i;
+
+/** Busca uma submissão pelo id (página de detalhe). Devolve null se o id for inválido ou não existir. */
+export async function obterSubmissao(id: string): Promise<Submissao | null> {
+  if (!REGEX_UUID.test(id)) return null;
+
+  const sql = obterSql();
+  const linhas = await sql`
+    select id, form_id, titulo, nome, email, telefone, respostas, criado_em
+    from form_submissions
+    where id = ${id}
+  `;
+  const linha = (linhas as Record<string, unknown>[])[0];
+  return linha ? mapearSubmissao(linha) : null;
+}
+
 /** Exclui uma submissão pelo id. Lança em erro de banco (o caller trata). */
 export async function excluirSubmissao(id: string): Promise<void> {
   const sql = obterSql();

@@ -1,23 +1,29 @@
+"use client";
+
 import Image from "next/image";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import Container from "@/components/Container";
 import { cn } from "@/lib/cn";
 import { sair } from "@/lib/auth/acoes";
 
 /*
- * Cabeçalho compartilhado da área interna protegida (/dashboard e /dashboard/respostas).
- * Traz o logo, a navegação entre o painel e as respostas, e o botão "Sair" (logout via a
- * Server Action `sair`, num <form> — funciona sem JS no client).
+ * Cabeçalho compartilhado da área interna protegida, renderizado pelo layout do grupo
+ * (interna). É client para descobrir a rota atual via usePathname e marcar o link ativo.
+ * O botão "Sair" continua num <form> com a Server Action `sair` — funciona sem JS.
  */
 
 const LINK_BASE = "text-sm tracking-wide transition-colors hover:text-[var(--color-va-text)]";
 
-export default function CabecalhoArea({
-  ativo,
-}: {
-  /** Marca o link da página atual. */
-  ativo?: "painel" | "respostas";
-}) {
+export default function CabecalhoArea() {
+  const pathname = usePathname();
+  const ativo: "painel" | "respostas" | undefined =
+    pathname === "/dashboard"
+      ? "painel"
+      : pathname.startsWith("/dashboard/respostas")
+        ? "respostas"
+        : undefined;
+
   return (
     <header className="relative z-20 border-b border-[var(--color-va-border)]">
       <Container className="flex items-center justify-between gap-4 py-3 md:py-4">

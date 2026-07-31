@@ -15,13 +15,20 @@ import { obterSql } from "@/lib/db/cliente";
 import type { ResultadoEnvio } from "@/lib/email/gateway";
 import type { DadosFormulario, RespostaFormulario } from "@/lib/forms/enviar";
 
-/** Acha a 1ª resposta cuja pergunta casa o padrão (case-insensitive). Vazio/ausente → null. */
+/**
+ * Acha a resposta cuja pergunta casa o padrão (case-insensitive), ignorando respostas vazias.
+ * Quando o form tem campos de pai e mãe (ex.: anamnese), prefere o da mãe — é com ela que a
+ * Valquiria costuma tratar, então é o contato que vale no painel.
+ */
 function acharResposta(
   respostas: RespostaFormulario[],
   padrao: RegExp,
 ): string | null {
-  const achada = respostas.find((r) => padrao.test(r.pergunta));
-  return achada?.resposta.trim() || null;
+  const casam = respostas.filter(
+    (r) => padrao.test(r.pergunta) && r.resposta.trim(),
+  );
+  const daMae = casam.find((r) => /m[ãa]e/i.test(r.pergunta));
+  return (daMae ?? casam[0])?.resposta.trim() ?? null;
 }
 
 /**

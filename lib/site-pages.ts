@@ -1,6 +1,8 @@
 /*
  * Catálogo de todas as páginas do sistema — fonte única de verdade do /dashboard.
  * Ao criar uma rota nova, adicione-a aqui para que ela apareça no painel.
+ * Rotas dinâmicas (ex.: /dashboard/respostas/[id]) e route handlers (ex.: o export CSV)
+ * não entram: o catálogo lista só páginas com URL fixa navegável.
  */
 
 import { BIGFIVE_FORM_URL } from "@/lib/config";
@@ -81,6 +83,14 @@ export const SITE_PAGES: SitePage[] = [
     nota: "26 perguntas · salva no banco + e-mail",
   },
   {
+    titulo: "Anamnese — Orientação Parental",
+    href: "/forms/anamnese",
+    descricao:
+      "Formulário de anamnese da orientação parental: dados da família, gestação, comportamento, saúde, sono e teste de adversidades da infância (pontuação automática). Salva no banco e envia por e-mail à Valquiria.",
+    categoria: "formulario",
+    nota: "54 perguntas · salva no banco + e-mail",
+  },
+  {
     titulo: "Formulário de exemplo (demo)",
     href: "/forms/exemplo",
     descricao:
@@ -118,7 +128,7 @@ export const SITE_PAGES: SitePage[] = [
     titulo: "Respostas dos formulários",
     href: "/dashboard/respostas",
     descricao:
-      "Área interna para consultar as respostas recebidas pelos formulários: filtra por formulário, busca por nome/e-mail, ordena por data, exporta CSV e exclui submissões.",
+      "Área interna com a lista das respostas recebidas pelos formulários: filtra por formulário, busca por nome/e-mail, ordena por data e exporta CSV. Cada resposta abre em página própria com o conteúdo completo, cópia e exclusão.",
     categoria: "sistema",
     nota: "Uso interno · requer login",
   },

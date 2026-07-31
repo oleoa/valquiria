@@ -9,20 +9,12 @@
 import { cookies } from "next/headers";
 import { COOKIE_SESSAO, cookieValido } from "@/lib/auth/sessao";
 import { listarSubmissoes, type Ordem } from "@/lib/forms/consultar";
+import { formatarDataHora } from "@/lib/forms/datas";
 
 export const runtime = "nodejs";
 
 /** Teto de linhas por export — protege contra um dump gigante. Loga se truncar. */
 const TETO = 5000;
-
-const FORMATADOR_DATA = new Intl.DateTimeFormat("pt-BR", {
-  timeZone: "America/Sao_Paulo",
-  day: "2-digit",
-  month: "2-digit",
-  year: "numeric",
-  hour: "2-digit",
-  minute: "2-digit",
-});
 
 /** AAAA-MM-DD em America/Sao_Paulo (en-CA formata exatamente nesse padrão). */
 const FORMATADOR_ARQUIVO = new Intl.DateTimeFormat("en-CA", {
@@ -31,12 +23,6 @@ const FORMATADOR_ARQUIVO = new Intl.DateTimeFormat("en-CA", {
   month: "2-digit",
   day: "2-digit",
 });
-
-/** Mesmo normalizador da página: timestamptz do Postgres → Date confiável. */
-function paraData(criadoEm: string): Date {
-  const iso = criadoEm.trim().replace(" ", "T").replace(/([+-]\d{2})$/, "$1:00");
-  return new Date(iso);
-}
 
 /** Escapa um campo CSV (delimitador ";"): aspas duplicadas e campo entre aspas quando preciso. */
 function escaparCsv(valor: string): string {
@@ -77,7 +63,7 @@ export async function GET(req: Request): Promise<Response> {
       .map((r) => `${r.pergunta}: ${r.resposta}`)
       .join(" | ");
     const campos = [
-      FORMATADOR_DATA.format(paraData(s.criadoEm)),
+      formatarDataHora(s.criadoEm),
       s.titulo,
       s.nome ?? "",
       s.email ?? "",
