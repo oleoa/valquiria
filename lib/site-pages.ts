@@ -107,6 +107,14 @@ export const SITE_PAGES: SitePage[] = [
       "Página de links pública — reúne os canais da Valquiria e o acesso às páginas de produto.",
     categoria: "outra",
   },
+  {
+    titulo: "Design system",
+    href: "/design",
+    descricao:
+      "Referência pública do design system da marca: voz, cor, tipografia, espaço, movimento, ícones e componentes — demonstrados na própria página.",
+    categoria: "outra",
+    nota: "Referência viva · a página é a demo dela mesma",
+  },
 
   // -------------------------------- Sistema --------------------------------
   {
