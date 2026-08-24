@@ -91,6 +91,14 @@ export const SITE_PAGES: SitePage[] = [
     nota: "54 perguntas · salva no banco + e-mail",
   },
   {
+    titulo: "Feedback da jornada",
+    href: "/forms/feedback",
+    descricao:
+      "Formulário de feedback pós-jornada, no formato do Big Five: abertura, uma pergunta por tela e agradecimento no fim. Mede a nota de recomendação, o que marcou, o que faltou e a autorização de depoimento. Salva no banco e envia por e-mail à Valquiria.",
+    categoria: "formulario",
+    nota: "8 perguntas · só 2 obrigatórias · salva no banco + e-mail",
+  },
+  {
     titulo: "Formulário de exemplo (demo)",
     href: "/forms/exemplo",
     descricao:
